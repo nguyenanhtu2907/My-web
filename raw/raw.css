@@ -1,0 +1,43 @@
+div{
+    display: block;
+}
+.header{
+    height: 70px;
+    box-shadow: 0 3px 0 0 rgba(185, 185, 185, 0.1);
+}
+.logo a img{
+    height: 70px;
+}
+.flex{
+    display: flex;
+}
+.mr-auto{
+    margin-right: auto;
+}
+.form-search-header{
+    width: 360px;
+}
+.justify-between{
+    justify-content: space-between;
+}
+.items-center{
+    align-items: center;
+}
+.flex-1{
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0%;
+}
+.hidden{
+    visibility: hidden;
+    opacity: 0;
+}
+.append-button{
+    flex: 1;
+}
+.account-options{
+    height: 50%;
+}
+.btn-outline{
+    
+}
