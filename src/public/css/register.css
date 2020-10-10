@@ -48,7 +48,7 @@ body{
 .form-control:hover {
     border-color: rgb(0 123 255 / 44%);
 }
-.form-group.invalid .form-message{
+.form-group.invalid .form-message, span{
     color: #f33a58;
 }
 .form-gender{

@@ -27,9 +27,12 @@ function Validator(object) {
 
         if (messageValidate) {
             getParent(inputElement, object.formGroupSelector).querySelector(object.formMessage).innerText = messageValidate;
-            getParent(inputElement, object.formGroupSelector).classList.add('invalid');
         } else {
             getParent(inputElement, object.formGroupSelector).querySelector(object.formMessage).innerText = '';
+        }
+        if(getParent(inputElement, object.formGroupSelector).querySelector(object.formMessage).innerText){
+            getParent(inputElement, object.formGroupSelector).classList.add('invalid');
+        }else{
             getParent(inputElement, object.formGroupSelector).classList.remove('invalid');
         }
         return !messageValidate;
