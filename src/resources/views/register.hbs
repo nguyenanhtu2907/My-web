@@ -4,71 +4,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
+    <title>Cook Hub - Đăng ký</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/register.css">
 </head>
 
 <body>
-    <div class="bg-form">
-        <form id="form-register" method="POST" action="">
-            <div class="text-center">
-                <h3 class="form-title">Đăng ký thành viên</h3>
-                <p class="desc">Let's cook</p>
-                <hr>
-            </div>
-            <div class="form-group">
-                <label class="form-label" for="username">Tên đăng nhập</label>
-                <input type="text" class="form-control" id="username" name="username" placeholder="Ex: username123">
-                <span class="form-message"></span>
-            </div>
-            <div class="form-group">
-                <label class="form-label" for="fullname">Họ và tên</label>
-                <input type="text" class="form-control" id="fullname" name="fullname" placeholder="Ex: Nguyễn Anh Tú">
-                <span class="form-message"></span>
-            </div>
-            <div class="form-group">
-                <div class="form-gender">
-                    <label class="form-label" for="gender">Giới tính</label>
-                    <div class="gender">
-                        <input type="radio" name="gender" class="form-control" value="male">Nam
-                    </div>
-                    <div class="gender">
-                        <input type="radio" name="gender" class="form-control" value="female">Nữ
-                    </div>
-                    <div class="gender">
-                        <input type="radio" name="gender" class="form-control" value="other">Khác
-                    </div>
+    <div class="bg-black">
+        <div class="bg-form">
+            <form id="form-register" method="POST" action="">
+                <div class="text-center">
+                    <h3 class="form-title">Đăng ký thành viên</h3>
+                    <p class="desc">Let's cook!!!</p>
+                    <hr>
                 </div>
-                <span class="form-message"></span>
-            </div>
-            <div class="form-group">
-                <label class="form-label" for="email">Email</label>
-                <input type="text" class="form-control" id="email" name="email" placeholder="Ex: example@gmail.com">
-                <span class="form-message"></span>
-            </div>
-            <div class="form-group">
-                <label class="form-label" for="password">Mật khẩu</label>
-                <input type="password" class="form-control" id="password" name="password" placeholder="Password">
-                <span class="form-message"></span>
-            </div>
-            <div class="form-group">
-                <label class="form-label" for="confirm">Nhập lại mật khẩu</label>
-                <input type="password" class="form-control" id="confirm" name="confirm" placeholder="Confirm Password">
-                <span class="form-message "></span>
-            </div>
-            <div class="form-group form-check">
-                <input type="checkbox" class="form-check-input" id="check" name="check">
-                <label class="form-check-label" for="check">Tôi không phải người máy</label> <br>
-                <span class="form-message"></span>
-            </div>
-            <div class="mt-4">
-                <button type="submit" class="btn btn-primary btn-form">Đăng ký</button>
-            </div>
-        </form>
-        <hr>
-        <p>Bạn đã có tài khoản? <a href="/account/login">Đăng nhập ngay.</a></p>
+                <div class="form-group">
+                    <label class="form-label" for="username">Tên đăng nhập</label>
+                    <input type="text" class="form-control" id="username" name="username" placeholder="Ex: username123">
+                    <span class="form-message">
+                        {{#if message}}
+                            {{message}}
+                        {{/if}}
+                    </span>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="fullname">Họ và tên</label>
+                    <input type="text" class="form-control" id="fullname" name="fullname"
+                        placeholder="Ex: Nguyễn Anh Tú">
+                    <span class="form-message"></span>
+                </div>
+                <div class="form-group">
+                    <div class="form-gender">
+                        <label class="form-label" for="gender">Giới tính</label>
+                        <div class="gender">
+                            <input type="radio" name="gender" class="form-control" value="male">Nam
+                        </div>
+                        <div class="gender">
+                            <input type="radio" name="gender" class="form-control" value="female">Nữ
+                        </div>
+                        <div class="gender">
+                            <input type="radio" name="gender" class="form-control" value="other">Khác
+                        </div>
+                    </div>
+                    <span class="form-message"></span>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="email">Email</label>
+                    <input type="text" class="form-control" id="email" name="email" placeholder="Ex: example@gmail.com">
+                    <span class="form-message"></span>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="password">Mật khẩu</label>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                    <span class="form-message"></span>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="confirm">Nhập lại mật khẩu</label>
+                    <input type="password" class="form-control" id="confirm" name="confirm"
+                        placeholder="Confirm Password">
+                    <span class="form-message "></span>
+                </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="check" name="check">
+                    <label class="form-check-label" for="check">Tôi không phải người máy</label> <br>
+                    <span class="form-message"></span>
+                </div>
+                <div class="mt-4">
+                    <button type="submit" class="btn btn-primary btn-form">Đăng ký</button>
+                </div>
+            </form>
+            <hr>
+            <p>Bạn đã có tài khoản? <a href="/account/login">Đăng nhập ngay.</a></p>
+        </div>
     </div>
 
     <script src="../javascripts/validator.js"></script>
@@ -103,8 +111,8 @@
                 Validator.isRequired('#check', 'Trường này là bắt buộc!!!'),
                 Validator.isRequired('input[name="gender"]', 'Trường này là bắt buộc!!!'),
             ],
-           // onSubmit: function (data) {
-             //   console.log(data);
+            // onSubmit: function (data) {
+            //   console.log(data);
             //}
         });
 

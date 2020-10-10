@@ -4,24 +4,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
+    <title>Cook Hub - Đăng nhập</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/register.css">
 </head>
 
 <body>
+    {{!-- <div class="bg-black"> --}}
     <div class="bg-form">
         <form id="form-register" method="POST" action="">
             <div class="text-center">
                 <h3 class="form-title">Đăng nhập</h3>
-                <p class="desc">Welcome back </p>
+                <p class="desc">Welcome back <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-heart-fill"
+                        fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                            d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
+                    </svg>
+                </p>
                 <hr>
             </div>
             <div class="form-group">
                 <label class="form-label" for="username">Tên đăng nhập</label>
                 <input type="text" class="form-control" id="username" name="username" placeholder="Ex: username123">
-                <span class="form-message"></span>
+                <span class="form-message">
+                    {{#if message}}
+                    {{message}}
+                    {{/if}}
+                </span>
             </div>
             <div class="form-group">
                 <label class="form-label" for="password">Mật khẩu</label>
@@ -33,8 +43,10 @@
             </div>
         </form>
         <hr>
-        <p>Trở lại <a href="/">trang chủ</a></p>
+        <p>Bạn chưa có tài khoản? <a href="/account/register">Đăng ký ngay.</a></p>
+        <p>Trở lại <a href="/">Trang chủ</a></p>
     </div>
+    {{!-- </div> --}}
 
     <script src="../javascripts/validator.js"></script>
     <script>
@@ -46,9 +58,9 @@
                 Validator.isRequired('#username'),
                 Validator.isRequired('#password'),
             ],
-            onSubmit: function (data) {
-                console.log(data);
-            }
+            //onSubmit: function (data) {
+            //    console.log(data);
+            //}
         });
 
     </script>
