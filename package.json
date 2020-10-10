@@ -19,8 +19,10 @@
   },
   "homepage": "https://github.com/nguyenanhtu2907/My-web#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "express": "^4.17.1",
-    "express-handlebars": "^5.1.0"
+    "express-handlebars": "^5.1.0",
+    "mongoose": "^5.10.8"
   },
   "devDependencies": {
     "morgan": "^1.10.0",
