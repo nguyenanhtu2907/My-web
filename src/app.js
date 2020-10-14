@@ -2,6 +2,8 @@ const path = require('path');
 const express = require('express');
 const morgan = require('morgan');
 const handlebars = require('express-handlebars');
+const session = require('express-session');
+const methodOverride = require('method-override');
 
 const route = require('./resources/app/routes');
 const db = require('./resources/config/db');
@@ -10,6 +12,18 @@ db.connect();
 const app = express();
 const port = 3000;
 
+app.use(methodOverride('_method'));
+
+app.set('trust proxy', 1) // trust first proxy
+app.use(session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { 
+        // secure: true 
+    }    
+}))    
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(morgan('combined'));
@@ -17,11 +31,11 @@ app.use(morgan('combined'));
 
 app.engine('hbs', handlebars({
     extname: '.hbs',
-}));
+}));    
 
 app.use(express.urlencoded({
     extended: true,
-}));
+}));    
 app.use(express.json());
 
 app.set('view engine', 'hbs');
