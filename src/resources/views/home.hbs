@@ -1,1 +1,6 @@
 <h1>BODY</h1>
+{{#if localIsAuthenticated}}
+<h1>{{localAuthUser.fullname}}</h1>
+{{else}}
+<h1>chua dang nhap</h1>
+{{/if}}

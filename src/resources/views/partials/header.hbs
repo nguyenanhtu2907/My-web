@@ -1,4 +1,4 @@
-<div class="container-fluid content-header flex justify-between items-center">
+<div class="container-fluid content-header flex justify-between items-center header">
     <div class="logo">
         <a href="/"><img src="/img/Logo-default.png" alt=""></a>
     </div>
@@ -16,6 +16,14 @@
         </form>
     </div>
     <div class="account-options">
+        {{#if localIsAuthenticated}}
+        <h4>Xin chào,{{localAuthUser.fullname}}</h4>
+        <a href="/account/change-password">Đổi mật khẩu</a>
+        /
+        <a href="/account/logout">Đăng xuất</a>
+        {{else}}
         <a class="btn " href="/account/register">Tạo tài khoản</a>
+        <a class="btn " href="/account/login">Đăng nhập</a>
+        {{/if}}
     </div>
 </div>
