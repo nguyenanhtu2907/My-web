@@ -2,8 +2,11 @@ const express = require('express');
 const router = express.Router();
 
 const postController = require('../controllers/PostController');
+const accountController = require('../controllers/AccountController');
 
-// router.get('/register', postController.register);
+router.get('/create', 
+// accountController.restrictLogin,
+ postController.createPost);
 
 // router.post('/register', postController.registerServer)
 

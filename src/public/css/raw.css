@@ -33,10 +33,15 @@ div{
     visibility: hidden;
     opacity: 0;
 }
+.display-none{
+    display: none;
+}
 .append-button{
     flex: 1;
 }
 .account-options{
     height: 50%;
 }
-
+.overflowhidden{
+    overflow: hidden;
+}

@@ -16,7 +16,7 @@ function route(app) {
 
     app.use('/account', accountRouter);
 
-    // app.use('/post', postRouter);
+    app.use('/post', postRouter);
 
     app.use('/', homeRouter);
 }
