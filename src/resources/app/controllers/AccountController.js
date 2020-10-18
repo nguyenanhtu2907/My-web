@@ -25,6 +25,7 @@ class AccountController {
                 return res.render('register', {
                     layout: false,
                     message: 'Tên đăng nhập đã tồn tại!!!',
+                    values: req.body,
                 })
 
             } else {
@@ -52,12 +53,14 @@ class AccountController {
                     return res.render('login', {
                         layout: false,
                         message: 'Tên đăng nhập hoặc mật khẩu không đúng!',
+                        values: req.body,
                     })
                 }
             } else {
                 return res.render('login', {
                     layout: false,
                     message: 'Tên đăng nhập hoặc mật khẩu không đúng!',
+                    values: req.body,
                 })
             }
 
@@ -88,6 +91,7 @@ class AccountController {
                 if (!rs) {
                     return res.render('changePassword', {
                         message: 'Mật khẩu cũ không đúng!!!',
+                        
                     })
                 }
                 const password_hash = bcrypt.hashSync(req.body.password, 8);
