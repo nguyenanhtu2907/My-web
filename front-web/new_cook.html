@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./new_cook.css">
+    <link rel="stylesheet" href="base.css">
+    <link rel="stylesheet"  href="./font/css/all.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> </script>
+
+</head>
+<body>
+    <header class="header">
+
+    </header>
+    <div class="container">
+        
+        <div class="upload_image">
+            <input type="file" id="file" accept="image/*">
+            <label for="file">
+                <div class="label_item">
+                    <i class="fas fa-camera cam_icon"></i>
+                    <h3 class="upload_file-label">Hôm nay bạn đã đăng bài gì chưa?</h3>
+                    <p class="upload_file-span">
+                        Truyền came hứng nấu món của bạn đến mọi người nào
+                    </p>
+                </div>
+
+            </labell>
+        </div>
+
+        <div class="cook_recipe">
+            <div class="cook_recipe-input">
+                <div class="cook_recipe-name">
+                    <input type="text" class="cook_recipe-name--input" placeholder="Tên món">
+                </div>
+                <div class="cook_recipe-name">
+                    <input type="text" class="cook_recipe-name--input" placeholder="Mô tả món ăn của bạn">
+                </div>
+
+                <div class="cook_recipe-khauphan">
+                    <label for="name" class="cook_recipe-khauphan--label">Khẩu phần: </label>
+                    <input type="text" class="cook_recipe-khauphan--input">
+                </div>
+                <div class="cook_recipe-khauphan">
+                    <label for="name" class="cook_recipe-khauphan--label">Thời gian nấu: </label>
+                    <input type="text" class="cook_recipe-khauphan--input">
+                </div>
+                    
+            </div>
+           
+               
+        </div>
+        <div class="material">
+            <h2>Nguyên Liệu</h2>
+            <ul list-style= "" class="material_list">
+                <li class="material_item"><input type="text" class="material_input" placeholder="250g bột">
+                    <button class="material_delete_icon" onclick="deleteN(this);"><i class="fas fa-times delete_icon" ></i></button>
+                </li>
+            </ul>
+            <div class="add_material">
+                <button class="add_material_button">
+                    <i class="fas fa-plus add_icon"></i>
+                    <span class="add_button-descrip">Nguyên liệu</span>
+                </button>
+                
+            </div>
+        </div>
+
+        <div class="step">
+            <h2>Các Bước </h2>
+            <ul class="step_list">
+                <li class="step_item">
+                    <div class="step_item-in">
+                        <input type="text" class="step_item-input" placeholder="trộn bột và nước đến khi đặc lại">
+                        <button class="step_delete_icon" onclick="deleteN(this); "><i class="fas fa-times delete_icon" ></i></button>
+                    </div>
+                            
+                    <div class="step_upload_image">
+                        <input type="file" id="file" accept="image/*">
+                        <label for="file" class="label_upload_image">   
+                            <div class="step_label_item">
+                                <i class="fas fa-camera step_cam_icon"></i>
+                            </div>
+                                
+                                
+            
+                        </label>
+                    </div>
+                </li>
+                
+            </ul>
+            <div class="add_step">
+                <button class="add_step_button">
+                    <i class="fas fa-plus add_icon"></i>
+                    <span class="add_button-descrip">Bước làm</span>
+                </button>
+                
+            </div>
+        </div>
+        
+
+    </div>
+<!-- <div>
+    <input type="submit" value="remove">
+    
+</div> -->
+    
+    <script src="./js.js"> </script>
+</body>
+</html>
