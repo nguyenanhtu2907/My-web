@@ -77,22 +77,35 @@ class AccountController {
 
 
     profile(req, res, next) {
-        // var postsByUsername = Post.find({author: req.session.authUser.username})
-        // .then(
-        //     posts =>  multipleMongooseToObj(posts)
-        // )
+        var postsByUsername=[];
+        var error='adad';
+        Post.find({author: req.params.id})
+        .then(
+            posts =>  postsByUsername = multipleMongooseToObj(posts)
+        )
+        .catch(() => {})
+
+        User.findOne({ _id: req.params.id }, function (err, user) {
+            if(!user){
+                res.send("Nguoi dung khong ton tai")
+            }
+            //    return res.render('profile',{
+            //        user: mongooseToObj(user),
+            //        postsByUsername,
+            //    })
+            if(!postsByUsername.length){
+                error='Chưa có bài viết nào được đăng!!!'
+            }
+            res.json({user, postsByUsername, error});   
+        })
         
+
+        
+
         // res.json(postsByUsername);
 
 
-
-
-        // User.findOne( {_id: req.params.id}, function (err, user){
-        // })
-        
-
-        res.send('Day la trang profile user')
-        
+        // res.send('Day la trang profile user')
     }
 
     editProfile(req, res, next) {
@@ -103,41 +116,52 @@ class AccountController {
         // })
 
         res.send('Day la trang edit profile user')
-        
+
+    }
+
+    editProfilePut(req, res, next) {
+        //neu req.params.id === req.session.authUser thi vao trang edit
+        // neu khong thi tra ve trang bao loi "Trang ban tim kiem hien khong co, hay quay lai"
+
+        // User.findOne( {_id: req.params.id}, function (err, user){
+        // })
+
+        res.send('Day la trang edit profile user')
+
     }
 
 
 
 
 
-    
+
     changePassword(req, res, next) {
         User.findById(req.session.authUser)
-        .then(user => res.render('changePassword',{
-            user: mongooseToObj(user),
-        }))
-        
+            .then(user => res.render('changePassword', {
+                user: mongooseToObj(user),
+            }))
+
     }
 
     changePasswordPut(req, res, next) {
         // User.updateOne({_id: req.params.id})
         User.findOne({ _id: req.params.id }, function (err, user) {
-                const rs = bcrypt.compareSync(req.body.opassword, user.password_hash);
-                if (!rs) {
-                    return res.render('changePassword', {
-                        message: 'Mật khẩu cũ không đúng!!!',
-                        
-                    })
-                }
-                const password_hash = bcrypt.hashSync(req.body.password, 8);
-                user.password_hash=password_hash;
+            const rs = bcrypt.compareSync(req.body.opassword, user.password_hash);
+            if (!rs) {
+                return res.render('changePassword', {
+                    message: 'Mật khẩu cũ không đúng!!!',
 
-                user.save()
-                .then(()=> res.redirect('/'))
-                .catch(error => {})
-                // delete user.password_hash;
+                })
+            }
+            const password_hash = bcrypt.hashSync(req.body.password, 8);
+            user.password_hash = password_hash;
 
-                // req.session.authUser = user;
+            user.save()
+                .then(() => res.redirect('/'))
+                .catch(error => { })
+            // delete user.password_hash;
+
+            // req.session.authUser = user;
         })
     }
 
