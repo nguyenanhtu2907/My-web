@@ -1,7 +1,7 @@
 const bcrypt = require('bcryptjs');
 const User = require('../models/User');
 const Post = require('../models/Post');
-const { mongooseToObj } = require('../util/mongooseToObj')
+const { mongooseToObj, multipleMongooseToObj } = require('../util/mongooseToObj')
 
 // const { delete } = require('../routes/account');
 class AccountController {
@@ -11,7 +11,7 @@ class AccountController {
         });
 
     }
-    registerServer(req, res, next) {
+    registerPost(req, res, next) {
         const password_hash = bcrypt.hashSync(req.body.password, 8);
         const entity = {
             username: req.body.username,
@@ -45,7 +45,7 @@ class AccountController {
     }
 
 
-    loginServer(req, res, next) {
+    loginPost(req, res, next) {
         User.findOne({ username: req.body.username }, function (err, user) {
             if (user) {
                 const rs = bcrypt.compareSync(req.body.password, user.password_hash);
@@ -76,6 +76,41 @@ class AccountController {
     }
 
 
+    profile(req, res, next) {
+        // var postsByUsername = Post.find({author: req.session.authUser.username})
+        // .then(
+        //     posts =>  multipleMongooseToObj(posts)
+        // )
+        
+        // res.json(postsByUsername);
+
+
+
+
+        // User.findOne( {_id: req.params.id}, function (err, user){
+        // })
+        
+
+        res.send('Day la trang profile user')
+        
+    }
+
+    editProfile(req, res, next) {
+        //neu req.params.id === req.session.authUser thi vao trang edit
+        // neu khong thi tra ve trang bao loi "Trang ban tim kiem hien khong co, hay quay lai"
+
+        // User.findOne( {_id: req.params.id}, function (err, user){
+        // })
+
+        res.send('Day la trang edit profile user')
+        
+    }
+
+
+
+
+
+    
     changePassword(req, res, next) {
         User.findById(req.session.authUser)
         .then(user => res.render('changePassword',{
@@ -84,7 +119,7 @@ class AccountController {
         
     }
 
-    changePasswordServer(req, res, next) {
+    changePasswordPut(req, res, next) {
         // User.updateOne({_id: req.params.id})
         User.findOne({ _id: req.params.id }, function (err, user) {
                 const rs = bcrypt.compareSync(req.body.opassword, user.password_hash);
