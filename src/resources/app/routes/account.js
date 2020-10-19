@@ -5,19 +5,24 @@ const accountController = require('../controllers/AccountController');
 
 router.get('/register', accountController.restrictRegister, accountController.register);
 
-router.post('/register', accountController.registerServer)
+router.post('/register', accountController.registerPost)
 
 router.get('/login', accountController.restrictRegister, accountController.login);
 
-router.post('/login', accountController.loginServer);
+router.post('/login', accountController.loginPost);
 
 
 
+
+router.get('/:id', accountController.profile);
+
+router.get('/:id/edit', accountController.editProfile);
+
+// router.put('/change-password/:id', accountController.changePasswordServer);
 
 router.get('/change-password', accountController.restrictLogin, accountController.changePassword);
 
-router.put('/change-password/:id', accountController.changePasswordServer);
-
+router.put('/change-password/:id', accountController.changePasswordPut);
 
 
 
