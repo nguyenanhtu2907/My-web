@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="./new_cook.css">
     <link rel="stylesheet" href="base.css">
     <link rel="stylesheet"  href="./font/css/all.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> </script>
+    
 
 </head>
 <body>
@@ -55,9 +55,12 @@
         <div class="material">
             <h2>Nguyên Liệu</h2>
             <ul list-style= "" class="material_list">
-                <li class="material_item"><input type="text" class="material_input" placeholder="250g bột">
-                    <button class="material_delete_icon" onclick="deleteN(this);"><i class="fas fa-times delete_icon" ></i></button>
-                </li>
+                <div>
+                    <li class="material_item"><input type="text" class="material_input" placeholder="250g bột">
+                        <button class="material_delete_icon" ><i class="fas fa-times delete_icon" ></i></button>
+                    </li>
+                </div>
+                
             </ul>
             <div class="add_material">
                 <button class="add_material_button">
@@ -71,25 +74,30 @@
         <div class="step">
             <h2>Các Bước </h2>
             <ul class="step_list">
-                <li class="step_item">
-                    <div class="step_item-in">
-                        <input type="text" class="step_item-input" placeholder="trộn bột và nước đến khi đặc lại">
-                        <button class="step_delete_icon" onclick="deleteN(this); "><i class="fas fa-times delete_icon" ></i></button>
-                    </div>
-                            
-                    <div class="step_upload_image">
-                        <input type="file" id="file" accept="image/*">
-                        <label for="file" class="label_upload_image">   
-                            <div class="step_label_item">
-                                <i class="fas fa-camera step_cam_icon"></i>
+                <div>
+                    <li class="step_item">
+                        
+                            <div class="step_item-in">
+                                <input type="text" class="step_item-input" placeholder="trộn bột và nước đến khi đặc lại">
+                                <button class="step_delete_icon"><i class="fas fa-times delete_icon" ></i></button>
                             </div>
-                                
-                                
-            
-                        </label>
-                    </div>
-                </li>
-                
+                                    
+                            <div class="step_upload_image">
+                                <input type="file" id="file" accept="image/*">
+                                <label for="file" class="label_upload_image">   
+                                    <div class="step_label_item">
+                                        <i class="fas fa-camera step_cam_icon"></i>
+                                    </div>
+                                        
+                                        
+                    
+                                </label>
+                            </div>
+                        
+                        
+                    </li>
+                    
+                </div>
             </ul>
             <div class="add_step">
                 <button class="add_step_button">
@@ -102,11 +110,8 @@
         
 
     </div>
-<!-- <div>
-    <input type="submit" value="remove">
-    
-</div> -->
-    
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> </script>
     <script src="./js.js"> </script>
 </body>
 </html>

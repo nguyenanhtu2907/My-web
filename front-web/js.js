@@ -1,23 +1,37 @@
 var material = document.getElementsByClassName('material_list')[0];
 
 $(document).ready(function(){
+
     $(".add_material").click(function(){
-      $("ul.material_list").append(material.innerHTML);
+      $("ul.material_list").append(material.firstElementChild.innerHTML);
     });
+
+    $(this).on("click", ".material_delete_icon", function(){
+      var target = $(this).parent();
+        target.remove();
+    });
+});
+
+
+
+
+ var step = document.getElementsByClassName('step_list')[0];
+ $(document).ready(function(){
+    
+  $(".add_step").click(function(){
+    $("ul.step_list").append(step.firstElementChild.innerHTML);
   });
 
-var step = document.getElementsByClassName('step_list')[0];
-
-$(document).ready(function(){
-    $(".add_step").click(function(){
-      $("ul.step_list").append(step.innerHTML);
-    });
+  $(this).on("click", ".step_delete_icon", function(){
+    var target2 = $(this).parent().parent();
+      target2.remove();
   });
 
-var step_item = step.getElementsByClassName('step_item');
-function deleteN(this){
-  this.parentNode.parentNode.();
-}
+  });
+
+
+
+
 
 
   
