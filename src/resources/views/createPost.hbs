@@ -5,51 +5,97 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="/css/raw.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/createPost.css">
+    <link rel="stylesheet" href="/css/base.css">
+    {{!-- <link rel="stylesheet" href="/css/all.css"> --}}
+
 </head>
 
 <body>
-    {{>header}}
-    <div class="container mt-2 text-center ">
-        <label class="overflowhidden" for="upload" style="background-color: #ececec6b; width:100%; height: 300px;" ;>
-            <div class="text-secondary inp-img" style="margin-top: 30px">
-                <img class="w-16 mx-auto pointer-events-none"
-                    src="//assets-global.cpcdn.com/assets/camera-e526534167ed86f4891b97ae3da7bb6327b7679a0ad7c9b837434847f8457434.png">
-
-                <p class="text-cookpad-20 font-extrabold mt-6">Bạn đã đăng hình món mình nấu ở đây chưa?
-                </p>
-                <p class="text-cookpad-14">Truyền cảm hứng nấu món của bạn đến mọi người nào!</p>
+    <header class="header">
+    </header>
+    <form class="container" action="" method="POST">
+        <div class="upload_image">
+            <input type="file" id="thumbnail" accept="image/*" name="img-input">
+            <label for="thumbnail">
+                <div class="label_item">
+                    <i class="fas fa-camera cam_icon"></i>
+                    <h3 class="upload_file-label">Hôm nay bạn đã đăng bài gì chưa?</h3>
+                    <p class="upload_file-span">
+                        Truyền cảm hứng nấu món của bạn đến mọi người nào!!!
+                    </p>
+                </div>
+                </labell>
+        </div>
+        <div class="cook_recipe">
+            <div class="cook_recipe-input">
+                <div class="cook_recipe-name">
+                    <input type="text" class="cook_recipe-name--input" placeholder="Tên món" name="title">
+                </div>
+                <div class="cook_recipe-name">
+                    <input type="text" class="cook_recipe-name--input" placeholder="Mô tả món ăn của bạn" name="description">
+                </div>
+                <div class="cook_recipe-khauphan">
+                    <label class="cook_recipe-khauphan--label">Khẩu phần: </label>
+                    <input type="text" class="cook_recipe-khauphan--input" name="ration">
+                </div>
+                <div class="cook_recipe-khauphan">
+                    <label class="cook_recipe-khauphan--label">Thời gian nấu: </label>
+                    <input type="text" class="cook_recipe-khauphan--input" name="timecook">
+                </div>
             </div>
-            <input type="file" name="file" aria-label="Bạn đã đăng hình món mình nấu ở đây chưa?" accept="image/*"
-                id="upload" style="display: none;">
-            <img id="img" style="height: 100%;" alt="">
-        </label>
-    </div>
-    <ul id="nguyenlieu" class="list-unstyled">
-        <li><input type="text"></li>
-    </ul>
-    <button id="btnadd">add nguyenlieu</button>
+        </div>
+        <div class="material">
+            <h2>Nguyên Liệu</h2>
+            <ul class="material_list">
+                <div>
+                    <li class="material_item">
+                        <input type="text" class="material_input" placeholder="250g bột" name="ingredients">
+                        <button class="material_delete_icon"><i class="fas fa-times delete_icon"></i></button>
+                    </li>
+                </div>
+            </ul>
+            <div class="add_material">
+                <button class="add_material_button">
+                    <i class="fas fa-plus add_icon"></i>
+                    <span class="add_button-descrip">Nguyên liệu</span>
+                </button>
+            </div>
+        </div>
+        <div class="step">
+            <h2>Các Bước </h2>
+            <ul class="step_list">
+                    <li class="step_item">
+                        <div class="step_item-in">
+                            <button class="step_delete_icon"><i class="fas fa-times delete_icon"></i></button>
+                            <input type="text" class="step_item-input" placeholder="trộn bột và nước đến khi đặc lại" name="steps">
+                        </div>
+                        <div class="step_upload_image">
+                            <input type="file" id="stepimg" accept="image/*" name="steps">
+                            <label for="stepimg" class="label_upload_image">
+                                <div class="step_label_item">
+                                    <i class="fas fa-camera step_cam_icon"></i>
+                                </div>
+                            </label>
+                        </div>
+                    </li>
 
+            </ul>
+            <div class="add_step">
+                <button class="add_step_button">
+                    <i class="fas fa-plus add_icon"></i>
+                    <span class="add_button-descrip">Bước làm</span>
+                </button>
 
-    <script src="/javascripts/createPost.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
-        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
-        crossorigin="anonymous"></script>
-    <script>
-        $(document).ready(function () {
-            $("#btnadd").click(function () {
-                $("ul").append('<li><li><input type="text"></li></li>');
-                console.log(1111)
-            });
-        });
+            </div>
+        </div>
+        <button id="btn-submit" type="submit">Đăng bài</button>
+    </form>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    </script>
+    <script src="/javascripts/createPost.js"> </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     </script>
 </body>
 

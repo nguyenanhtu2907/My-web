@@ -3,10 +3,13 @@ const User = require('../models/User')
 const Post = require('../models/Post');
 // const { delete } = require('../routes/account');
 class PostController {
-    createPost(req, res, next) {
+    create(req, res, next) {
         res.render('createPost',{
             layout: false,
         })
+    }
+    createPost(req, res, next) {
+        res.json(req.body)
     }
     // registerServer(req, res, next) {
     //     const password_hash = bcrypt.hashSync(req.body.password, 8);

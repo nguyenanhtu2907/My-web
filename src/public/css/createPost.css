@@ -1,0 +1,235 @@
+body{
+    background-color:rgb(252,252,240);
+}
+.container{
+    /* position: relative; */
+
+    background-color: white;
+    border: 0px solid;
+    margin-right: auto;
+    margin-left: auto;
+    width:600px;
+    height: 100%;
+}
+
+.upload_image{
+   width: 100%;
+   height: 200px;
+   background-color: rgb(246,245,244);
+}
+
+input[type="file"]{
+    display:none;
+}
+
+label{
+    /* height: 200px; */
+    display: block;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    /* margin: auto; */
+    
+}
+label:hover{
+    cursor: pointer;
+}
+
+.label_item{
+    padding-top:25px;
+}
+.cam_icon{
+    font-size: 5rem;
+}
+.upload_file-label{
+    font-family: roboto medium;
+    font-size: 1.7rem;
+}
+.upload_file-span{
+    font-family: roboto thin;
+    font-size: 1.5rem;
+}
+
+.cook_recipe-input{
+    display:block;
+    padding: 10px;
+}
+.cook_recipe-name{
+    background-color:rgb(246,245,244) ;
+    display: flex;
+    flex: 1;
+    border-radius: 20px;
+    /* line-height: 1.5rem; */
+    margin: 10px;
+}
+
+.cook_recipe-name--input{
+    flex: 1;
+    height: 56px;   
+    border: none;
+    font-size: 2.5rem;
+    border-radius: 8px;
+    background-color:rgb(246,245,244) ;
+    /* color: rgb(206,206,205); */
+}
+
+.cook_recipe-khauphan{
+    display:flex;
+    justify-content: space-between;
+    padding: 15px 10px;
+}
+.cook_recipe-khauphan--label{
+    font-size: 2rem;
+    font-family: roboto thin;
+    margin-left:0px;
+    min-width: 150px;
+    justify-content: center;
+    text-align: center;
+    margin: auto;
+    margin-left: -25px;
+}
+.cook_recipe-khauphan--input{
+    flex: 1;
+    height: 50px;
+    border: none;
+    border-radius: 8px;
+    background-color:rgb(246,245,244) ;
+    font-size:2rem;
+
+}
+.material_list{
+}
+.material_list li{
+    display:flex;
+    
+}
+
+.material_input{
+    /* margin-right: 50px; */
+    flex: 1;
+    height: 50px;
+    border: none;
+    border-radius: 8px;
+    background-color:rgb(246,245,244) ;
+    padding-right: 10px;
+}
+
+.material_item{
+    
+    padding: 5px;
+}
+.material_delete_icon{
+    padding: 0 10px 0 10px;
+    margin: auto;
+    border:none;
+    background-color:transparent;
+}
+
+.delete_icon{
+    font-size: 2rem;
+    margin: auto;
+    justify-content: center;
+    text-align: center;
+    color: rgb(206,206,205);
+    /* padding: 0x 0; */
+
+}
+.add_material{
+    display: flex;
+    height: 20px;
+    justify-content: center;
+   
+}
+.add_material_button{
+    justify-content: space-between;
+    background-color:white;
+    border:none;
+    margin: auto;
+    justify-content: center;
+    justify-self: center;
+}
+.add_material_button:hover{
+    cursor: pointer;
+
+}
+.add_icon{
+    font-size:1.5rem;
+    color: rgb(206,206,205);
+}
+.add_button-descrip{
+    font-family: roboto black;
+    margin-bottom:5px;
+    font-size: 1.8rem;
+}
+.step_list{
+    
+}
+.step_item{
+    padding: 10px;
+}
+.step_item-in{
+    display: flex;
+    padding-bottom: 5px;
+}
+.step_item-input{
+    flex: 1;
+    height: 50px;
+    border: none;
+    border-radius: 8px;
+    background-color:rgb(246,245,244) ;
+    padding-right: 10px;
+}
+.step_delete_icon{
+    padding: 0 8px 0 8px;
+    margin: auto;
+    border:none;
+    background-color:transparent ;
+}
+
+.add_step{
+    display: flex;
+    height: 20px;
+    justify-content: center;
+   
+}
+
+.add_step_button{
+    justify-content: space-between;
+    background-color:white;
+    border:none;
+    margin: auto;
+    justify-content: center;
+    justify-self: center;
+}
+.add_step_button:hover{
+    cursor: pointer;
+
+}
+
+.step_upload_image{
+    width: 100px;
+    height: 100px;
+    background-color: rgb(246,245,244);
+
+}
+.label_upload_image{
+    height: 100px;
+    display: flex;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.step_label_item{
+    margin: auto;
+}
+
+.step_cam_icon{
+    font-size: 2rem;
+}
+
