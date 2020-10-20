@@ -6,9 +6,9 @@ const accountController = require('../controllers/AccountController');
 
 router.get('/create', 
 // accountController.restrictLogin,
- postController.createPost);
+ postController.create);
 
-// router.post('/register', postController.registerServer)
+router.post('/create', postController.createPost);
 
 // router.get('/login', postController.login);
 

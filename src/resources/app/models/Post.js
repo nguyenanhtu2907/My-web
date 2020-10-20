@@ -7,6 +7,8 @@ mongoose.plugin(slug);
 const Post = new Schema({
     title: { type: String, required: true },
     author: { type: String, default: '' },
+    ration: { type: String, default: '' },
+    // timecook: { type: String, default: '' },
     post_description: { type: String, default: '' },
     ingredients: { type: Array, default: [] },
     steps: { type: String, default: '', required: true },
