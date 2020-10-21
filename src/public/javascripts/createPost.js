@@ -12,11 +12,31 @@ $(document).ready(function () {
 });
 
 var step = document.getElementsByClassName('step_list')[0];
-var index=1;
+var index = 1;
 $(document).ready(function () {
   $(".add_step").click(function (e) {
     e.preventDefault();
-    var stepAppended = `<li class="step_item"><div class="step_item-in"><button class="step_delete_icon"><i class="fas fa-times delete_icon"></i></button><input type="text" class="step_item-input" placeholder="trộn bột và nước đến khi đặc lại" name="steps"></div><div class="step_upload_image"><input type="file" id="stepimg${index}" accept="image/*" name="steps"> <label for= "stepimg${index}" class= "label_upload_image"><div class="step_label_item"><i class="fas fa-camera step_cam_icon"></i></div></label ></div ></li > `;
+    var stepAppended = `
+    <li class="step_item">
+      <div class="step_item-in">
+        <button class="step_delete_icon">
+          <i class="fas fa-times delete_icon">
+          </i>
+        </button>
+        <input type="text" class="step_item-input" placeholder="trộn bột và nước đến khi đặc lại" name="steps">
+      </div>
+      <div class="step_upload_image">
+        <input type="file" id="stepimg${index}" accept="image/*" name="stepimgs">
+        <label for= "stepimg${index}" class= "label_upload_image">
+          <div class="step_label_item">
+            <i class="fas fa-camera step_cam_icon">
+            </i>
+          </div>
+        </label >
+        <input type="text" class="steptext" name="steps" style="display: none;">
+      </div >
+    </li > 
+    `;
     $("ul.step_list").append(stepAppended);
     index++;
   });
@@ -33,33 +53,42 @@ $(document).ready(function () {
 $('btn-submit').click(function () {
   const formElement = document.forms[0];
   formElement.onsubmit = function (e) {
-
     formElement.submit();
   }
 })
 
-
-// formElement.addEventListener("submit", function(event) {
-//   event.preventDefault();
-//   const data = new FormData(formElement);
-//   console.log(data)
-// });
-
+// $('.stepimgs').change(readFile);
 // function readFile() {
-
 //   if (this.files && this.files[0]) {
-
 //     var FR= new FileReader();
-
 //     FR.addEventListener("load", function(e) {
-//       document.getElementById("img").src       = e.target.result;
-//       document.getElementById("b64").innerHTML = e.target.result;
+//       $(this).parent().children('.steptext').val(e.target.result);
 //     }); 
-
-//     FR.readAsDataURL( this.files[0] );
+//     FR.readAsDataURL(this.files[0]);
 //   }
+  
+//   console.log($(this).parent().children('.steptext'))
 // }
-// document.getElementById("inp").addEventListener("change", readFile);
+
+Array.from(document.querySelectorAll('.stepimgs')).map(function(stepimg){
+  stepimg.addEventListener('change', handleFileSelect, false);
+})
+
+function handleFileSelect(evt) {
+  var f = evt.target.files[0]; 
+  var reader = new FileReader();
+
+  reader.onload = (function() {
+    return function(e) {
+      evt.target.parentNode.querySelector('.steptext').value = e.target.result;
+    };
+  })(f);
+
+  reader.readAsDataURL(f);
+}
+
+
+
 
 
 

@@ -1,7 +1,8 @@
 const bcrypt = require('bcryptjs');
 const User = require('../models/User')
 const Post = require('../models/Post');
-// const { delete } = require('../routes/account');
+const { mongooseToObj, multipleMongooseToObj } = require('../util/mongooseToObj');
+
 class PostController {
     create(req, res, next) {
         res.render('createPost',{
@@ -9,8 +10,19 @@ class PostController {
         })
     }
     createPost(req, res, next) {
-        res.json(req.body)
+        // req.body.author = req.session.authUser._id;
+    
+        return res.render('createPostcopy',
+        {
+            data: req.body,
+            layout: false,
+        })
+        // res.json(req.body)
     }
+
+
+
+
     // registerServer(req, res, next) {
     //     const password_hash = bcrypt.hashSync(req.body.password, 8);
     //     const entity = {

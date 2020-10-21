@@ -48,6 +48,7 @@ class AccountController {
     loginPost(req, res, next) {
         User.findOne({ username: req.body.username }, function (err, user) {
             if (user) {
+                
                 const rs = bcrypt.compareSync(req.body.password, user.password_hash);
                 if (!rs) {
                     return res.render('login', {

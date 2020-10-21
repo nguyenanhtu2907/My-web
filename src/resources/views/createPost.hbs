@@ -16,7 +16,7 @@
     </header>
     <form class="container" action="" method="POST">
         <div class="upload_image">
-            <input type="file" id="thumbnail" accept="image/*" name="img-input">
+            <input type="file" id="thumbnail" accept="image/*" name="thumbnail">
             <label for="thumbnail">
                 <div class="label_item">
                     <i class="fas fa-camera cam_icon"></i>
@@ -33,7 +33,8 @@
                     <input type="text" class="cook_recipe-name--input" placeholder="Tên món" name="title">
                 </div>
                 <div class="cook_recipe-name">
-                    <input type="text" class="cook_recipe-name--input" placeholder="Mô tả món ăn của bạn" name="description">
+                    <input type="text" class="cook_recipe-name--input" placeholder="Mô tả món ăn của bạn"
+                        name="description">
                 </div>
                 <div class="cook_recipe-khauphan">
                     <label class="cook_recipe-khauphan--label">Khẩu phần: </label>
@@ -65,20 +66,24 @@
         <div class="step">
             <h2>Các Bước </h2>
             <ul class="step_list">
-                    <li class="step_item">
-                        <div class="step_item-in">
-                            <button class="step_delete_icon"><i class="fas fa-times delete_icon"></i></button>
-                            <input type="text" class="step_item-input" placeholder="trộn bột và nước đến khi đặc lại" name="steps">
-                        </div>
-                        <div class="step_upload_image">
-                            <input type="file" id="stepimg" accept="image/*" name="steps">
-                            <label for="stepimg" class="label_upload_image">
-                                <div class="step_label_item">
-                                    <i class="fas fa-camera step_cam_icon"></i>
-                                </div>
-                            </label>
-                        </div>
-                    </li>
+                <li class="step_item">
+                    <div class="step_item-in">
+                        <button class="step_delete_icon"><i class="fas fa-times delete_icon"></i></button>
+                        <input type="text" class="step_item-input" placeholder="trộn bột và nước đến khi đặc lại"
+                            name="steps">
+                    </div>
+                    <div class="step_upload_image">
+                        <input class="stepimgs" type="file" id="stepimg" accept="image/*" name="stepimgs">
+                        <label for="stepimg" class="label_upload_image">
+                            <div class="step_label_item">
+                                <i class="fas fa-camera step_cam_icon"></i>
+                            </div>
+                        </label>
+                        <input type="text" class="steptext" name="steps" style="display: none;">
+                        
+                    </div>
+                </li>
+
 
             </ul>
             <div class="add_step">
