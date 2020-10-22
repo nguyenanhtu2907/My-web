@@ -32,7 +32,7 @@ class AccountController {
                 const user = new User(entity);
                 user.save()
                     .then(() => res.redirect('/'))
-                    .catch(error => { })
+                    .catch(error => {})
             }
         })
     }
@@ -79,7 +79,7 @@ class AccountController {
 
     profile(req, res, next) {
         var postsByUsername=[];
-        var error='adad';
+        var error='';
         Post.find({author: req.params.id})
         .then(
             posts =>  postsByUsername = multipleMongooseToObj(posts)
