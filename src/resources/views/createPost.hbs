@@ -16,8 +16,8 @@
     </header>
     <form class="container" action="" method="POST">
         <div class="upload_image">
-            <input type="file" id="thumbnail" accept="image/*" name="thumbnail">
-            <label for="thumbnail">
+            <input type="file" id="thumbnailimg" accept="image/*" name="thumbnailimg">
+            <label for="thumbnailimg">
                 <div class="label_item">
                     <i class="fas fa-camera cam_icon"></i>
                     <h3 class="upload_file-label">Hôm nay bạn đã đăng bài gì chưa?</h3>
@@ -25,7 +25,8 @@
                         Truyền cảm hứng nấu món của bạn đến mọi người nào!!!
                     </p>
                 </div>
-                </labell>
+            </labell>
+            <input type="text" class="thumbnail" name="thumbnail" style="display: none;">
         </div>
         <div class="cook_recipe">
             <div class="cook_recipe-input">
@@ -34,7 +35,7 @@
                 </div>
                 <div class="cook_recipe-name">
                     <input type="text" class="cook_recipe-name--input" placeholder="Mô tả món ăn của bạn"
-                        name="description">
+                        name="postdescription">
                 </div>
                 <div class="cook_recipe-khauphan">
                     <label class="cook_recipe-khauphan--label">Khẩu phần: </label>

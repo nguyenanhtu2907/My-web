@@ -5,7 +5,7 @@ const postController = require('../controllers/PostController');
 const accountController = require('../controllers/AccountController');
 
 router.get('/create', 
-// accountController.restrictLogin,
+accountController.restrictLogin,
  postController.create);
 
 router.post('/create', postController.createPost);

@@ -5,19 +5,39 @@ const { mongooseToObj, multipleMongooseToObj } = require('../util/mongooseToObj'
 
 class PostController {
     create(req, res, next) {
-        res.render('createPost',{
+        res.render('createPost', {
             layout: false,
         })
     }
     createPost(req, res, next) {
-        // req.body.author = req.session.authUser._id;
-    
-        return res.render('createPostcopy',
-        {
-            data: req.body,
-            layout: false,
-        })
+        req.body.author = req.session.authUser._id;
+        var steps = [];
+        for (var i = 0; i < req.body.steps.length / 2; i++) {
+            var step = {
+                text: req.body.steps[2 * i],
+                img: req.body.steps[2 * i + 1],
+            }
+            steps.push(step);
+        }
         // res.json(req.body)
+        // setTimeout(function(){
+        const entity = {
+            title: req.body.title,
+            author: req.body.author,
+            thumbnail: req.body.thumbnail,
+            ration: req.body.ration,
+            postdescription: req.body.postdescription,
+            ingredients: req.body.ingredients,
+            steps: steps,
+        }
+        // res.json(entity);
+        // },0)
+        const post = new Post(entity);
+        // console.log(post);
+        post.save()
+            .then(() => res.redirect(`/account/${req.session.authUser._id}`))
+            .catch(error => { })
+
     }
 
 

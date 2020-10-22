@@ -4,7 +4,7 @@ const morgan = require('morgan');
 const handlebars = require('express-handlebars');
 const session = require('express-session');
 const methodOverride = require('method-override');
-
+var bodyParser = require('body-parser');
 const route = require('./resources/app/routes');
 const db = require('./resources/config/db');
 
@@ -34,9 +34,10 @@ app.engine('hbs', handlebars({
 }));    
 
 app.use(express.urlencoded({
-    extended: true,
+    limit: '50mb', extended: true
 }));    
-app.use(express.json());
+app.use(express.json({limit: '50mb', extended: true}));
+
 
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'resources/views'))
