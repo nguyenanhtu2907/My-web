@@ -32,6 +32,8 @@ router.get('/logout', accountController.restrictLogin, accountController.logout)
 
 router.get('/:id', accountController.profile);
 
+router.get('/:id/nav', accountController.profileNav);
+
 router.get('/:id/edit', accountController.editProfile);
 
 module.exports = router;

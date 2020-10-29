@@ -4,9 +4,7 @@ const router = express.Router();
 const postController = require('../controllers/PostController');
 const accountController = require('../controllers/AccountController');
 
-router.get('/create', 
-accountController.restrictLogin,
- postController.create);
+router.get('/create', accountController.restrictLogin, postController.create);
 
 router.post('/create', postController.createPost);
 
@@ -20,6 +18,6 @@ router.post('/create', postController.createPost);
 
 // router.post('/create', postController.createServer)
 
-// router.get('/create', postController.create)
+router.get('/:slug', postController.detail)
 
 module.exports = router;

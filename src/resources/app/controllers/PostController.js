@@ -2,6 +2,7 @@ const bcrypt = require('bcryptjs');
 const User = require('../models/User')
 const Post = require('../models/Post');
 const { mongooseToObj, multipleMongooseToObj } = require('../util/mongooseToObj');
+const { post } = require('../routes/post');
 
 class PostController {
     create(req, res, next) {
@@ -33,42 +34,26 @@ class PostController {
         // res.json(entity);
         // },0)
         const post = new Post(entity);
-        // console.log(post);
         post.save()
             .then(() => res.redirect(`/account/${req.session.authUser._id}`))
             .catch(error => { })
-
     }
 
+    detail(req, res, next) {
+        Post.findOne({ slug: req.params.slug })
+            .then(post => mongooseToObj(post))
+            .then(post => getPostInfo(post))
+            .then(function (post) {
+                Post.find({ author: post.author }).limit(2).sort({ 'createdAt': -1 })
+                    .then(posts => multipleMongooseToObj(posts))
+                    .then(posts => res.json(post))
+                    .catch(() => { }) 
+            })
+            .catch(() => { })
 
 
 
-    // registerServer(req, res, next) {
-    //     const password_hash = bcrypt.hashSync(req.body.password, 8);
-    //     const entity = {
-    //         username: req.body.username,
-    //         fullname: req.body.fullname,
-    //         gender: req.body.gender,
-    //         email: req.body.email,
-    //         password_hash,
-    //     }
-    //     User.findOne({ username: entity.username }, function (err, user) {
-    //         if (user) {
-    //             return res.render('register', {
-    //                 layout: false,
-    //                 message: 'Tên đăng nhập đã tồn tại!!!',
-    //             })
-
-    //         } else {
-    //             const user = new User(entity);
-    //             user.save()
-    //                 .then(() => res.redirect('/'))
-    //                 .catch(error => { })
-    //         }
-    //     })
-
-
-    // }
+    }
     // login(req, res, next) {
     //     res.render('login', {
     //         layout: false,
@@ -112,4 +97,20 @@ class PostController {
 
 
 }
+
+async function getPostInfo(post) {
+    var user = await User.findOne({ _id: post.author });
+    post.authorName = user.fullname;
+    post.authorAvatar = user.avatar;
+    return post
+}
+async function getPostsInfo(posts) {
+    for (var post of posts) {
+        var user = await User.findOne({ _id: post.author });
+        post.authorName = user.fullname;
+        post.authorAvatar = user.avatar;
+    }
+    return posts
+}
+
 module.exports = new PostController;
