@@ -1,6 +1,6 @@
 <div class="container-fluid content-header flex justify-between items-center header">
     <div class="logo">
-        <a href="/"><img src="/img/Logo-default.png" alt=""></a>
+        <a href="/"><img src="/img/cover.png" alt=""></a>
     </div>
     <div class="mr-auto ml-3 ">
         <form class="flex form-search-header " action="" method="GET">
@@ -15,12 +15,15 @@
             </button>
         </form>
     </div>
-    <div class="account-options">
+    <div class="account-options" style="display: flex; margin-top:-13px">
         {{#if localIsAuthenticated}}
-        <h4>Xin chào,{{localAuthUser.fullname}}</h4>
-        <a href="/account/change-password">Đổi mật khẩu</a>
-        /
-        <a href="/account/logout">Đăng xuất</a>
+        <img src="{{localAuthUser.avatar}}" alt="" style="height: 50px; padding-right:10px;">
+        <div>
+            <h4>Xin chào,{{localAuthUser.fullname}}</h4>
+            <a href="/account/change-password">Đổi mật khẩu</a>
+            /
+            <a href="/account/logout">Đăng xuất</a>
+        </div>
         {{else}}
         <a class="btn " href="/account/register">Tạo tài khoản</a>
         <a class="btn " href="/account/login">Đăng nhập</a>

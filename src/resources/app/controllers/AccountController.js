@@ -3,6 +3,7 @@ const User = require('../models/User');
 const Post = require('../models/Post');
 const { mongooseToObj, multipleMongooseToObj } = require('../util/mongooseToObj')
 
+
 // const { delete } = require('../routes/account');
 class AccountController {
     register(req, res, next) {
@@ -32,7 +33,7 @@ class AccountController {
                 const user = new User(entity);
                 user.save()
                     .then(() => res.redirect('/'))
-                    .catch(error => {})
+                    .catch(error => { })
             }
         })
     }
@@ -48,7 +49,7 @@ class AccountController {
     loginPost(req, res, next) {
         User.findOne({ username: req.body.username }, function (err, user) {
             if (user) {
-                
+
                 const rs = bcrypt.compareSync(req.body.password, user.password_hash);
                 if (!rs) {
                     return res.render('login', {
@@ -78,35 +79,35 @@ class AccountController {
 
 
     profile(req, res, next) {
-        var postsByUsername=[];
-        var error='';
-        Post.find({author: req.params.id})
-        .then(
-            posts =>  postsByUsername = multipleMongooseToObj(posts)
-        )
-        .catch(() => {})
+        var error = '';
+        var userTarget;
+        Post.find({ author: req.params.id }).limit(10).skip(req.query.page * 10 || 0).sort({ 'createdAt': -1 })
+            .then(posts => multipleMongooseToObj(posts))
+            .then(posts => getPostsInfo(posts))
+            .then(posts => res.json(posts))
+            .catch(() => { res.send(error) })
 
         User.findOne({ _id: req.params.id }, function (err, user) {
-            if(!user){
-                res.send("Nguoi dung khong ton tai")
+            if (!user) {
+                error = "Nguoi dung khong ton tai";
+            } else {
+                userTarget = user;
             }
             //    return res.render('profile',{
             //        user: mongooseToObj(user),
             //        postsByUsername,
             //    })
-            if(!postsByUsername.length){
-                error='Chưa có bài viết nào được đăng!!!'
-            }
-            res.json({user, postsByUsername, error});   
+
+            // res.json({ user, postsByUsername, error });
         })
-        
+    }
 
-        
-
-        // res.json(postsByUsername);
-
-
-        // res.send('Day la trang profile user')
+    profileNav(req, res, next) {
+        Post.find({ author: req.params.id }).limit(10).skip(req.query.page*10 || 0).sort({ 'createdAt': -1 })
+            .then(posts => multipleMongooseToObj(posts))
+            .then(posts => getPostsInfo(posts))
+            .then(posts => res.json(posts))
+            .catch(() => {})
     }
 
     editProfile(req, res, next) {
@@ -188,4 +189,14 @@ class AccountController {
         next()
     }
 }
+
+async function getPostsInfo(posts) {
+    for (var post of posts) {
+        var user = await User.findOne({ _id: post.author });
+        post.authorName = user.fullname;
+        post.authorAvatar = user.avatar;
+    }
+    return posts
+}
+
 module.exports = new AccountController;
