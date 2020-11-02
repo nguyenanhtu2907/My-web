@@ -11,6 +11,7 @@ const db = require('./resources/config/db');
 db.connect();
 const app = express();
 const port = 3000;
+const http = require("http").Server(app);
 
 app.use(methodOverride('_method'));
 
@@ -46,6 +47,6 @@ app.set('views', path.join(__dirname, 'resources/views'))
 route(app);
 
 
-app.listen(port, () => {
+http.listen(port, () => {
     console.log(`http://localhost:${port}`);
 })
