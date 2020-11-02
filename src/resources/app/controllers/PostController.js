@@ -44,14 +44,14 @@ class PostController {
             .then(post => mongooseToObj(post))
             .then(post => getPostInfo(post))
             .then(function (post) {
-                Post.find({ author: post.author }).limit(2).sort({ 'createdAt': -1 })
+                Post.find({ author: post.author }).limit(3).sort({ 'createdAt': -1 })
                     .then(posts => multipleMongooseToObj(posts))
-                    .then(posts => res.json(post))
-                    .catch(() => { }) 
+                    .then(posts => res.json({post, posts}))
+                    .catch(() => {}) 
             })
-            .catch(() => { })
-
-
+            .catch(() => res.render('error404',{
+                layout:false
+            }))
 
     }
     // login(req, res, next) {

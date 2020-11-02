@@ -14,12 +14,11 @@ router.post('/login', accountController.loginPost);
 
 
 
-
 // router.put('/change-password/:id', accountController.changePasswordServer);
 
-router.get('/change-password', accountController.restrictLogin, accountController.changePassword);
+// router.get('/change-password', accountController.restrictLogin, accountController.changePassword);
 
-router.put('/change-password/:id', accountController.changePasswordPut);
+// router.put('/change-password/:id', accountController.changePasswordPut);
 
 
 // router.get('/create', accountController.create)
@@ -34,6 +33,6 @@ router.get('/:id', accountController.profile);
 
 router.get('/:id/nav', accountController.profileNav);
 
-router.get('/:id/edit', accountController.editProfile);
+router.get('/:id/edit', accountController.restrictLogin, accountController.editProfile);
 
 module.exports = router;

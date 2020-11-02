@@ -37,15 +37,11 @@ class AccountController {
             }
         })
     }
-
-
     login(req, res, next) {
         res.render('login', {
             layout: false,
         });
     }
-
-
     loginPost(req, res, next) {
         User.findOne({ username: req.body.username }, function (err, user) {
             if (user) {
@@ -76,16 +72,9 @@ class AccountController {
             res.redirect(url)
         })
     }
-
-
     profile(req, res, next) {
         var error = '';
         var userTarget;
-        Post.find({ author: req.params.id }).limit(10).skip(req.query.page * 10 || 0).sort({ 'createdAt': -1 })
-            .then(posts => multipleMongooseToObj(posts))
-            .then(posts => getPostsInfo(posts))
-            .then(posts => res.json(posts))
-            .catch(() => { res.send(error) })
 
         User.findOne({ _id: req.params.id }, function (err, user) {
             if (!user) {
@@ -100,25 +89,53 @@ class AccountController {
 
             // res.json({ user, postsByUsername, error });
         })
+        Post.find({ author: req.params.id }).limit(10).skip(req.query.page * 10 || 0).sort({ 'createdAt': -1 })
+            .then(posts => multipleMongooseToObj(posts))
+            .then(posts => getPostsInfo(posts))
+            .then(posts => {
+                if (userTarget) {
+                    res.json({ userTarget, posts, countPost: posts.length })
+                } else {
+                    return res.render('error404', {
+                        layout: false
+                    })
+                }
+            }) //render profile page
+            .catch(() => { res.send(error) }) //reder error
     }
-
+    //link: /post/:id/nav?page=... fetch data 
     profileNav(req, res, next) {
-        Post.find({ author: req.params.id }).limit(10).skip(req.query.page*10 || 0).sort({ 'createdAt': -1 })
+        Post.find({ author: req.params.id }).limit(10).skip(req.query.page * 10 || 0).sort({ 'createdAt': -1 })
             .then(posts => multipleMongooseToObj(posts))
             .then(posts => getPostsInfo(posts))
             .then(posts => res.json(posts))
-            .catch(() => {})
+            .catch(() => { })
     }
 
     editProfile(req, res, next) {
         //neu req.params.id === req.session.authUser thi vao trang edit
         // neu khong thi tra ve trang bao loi "Trang ban tim kiem hien khong co, hay quay lai"
+        if (req.params.id == req.session.authUser.id && (req.query.type=='infomation' ||req.query.type=='password')) {
+            User.findOne({ _id: req.params.id }, function (err, user) {
+                var error = ''
+                if (!user) {
+                    error = "Nguoi dung khong ton tai";
+                } else {
+                    return res.render('editProfile', {
+                        layout: false,
+                        user,
+                        error,
+                        type: req.query.type,
+                    })
+                }
+            })
+        }else{
+            return res.render('error404', {
+                layout:false,
+            })
+        }
 
-        // User.findOne( {_id: req.params.id}, function (err, user){
-        // })
-
-        res.send('Day la trang edit profile user')
-
+        // res.send('Day la trang edit profile user')
     }
 
     editProfilePut(req, res, next) {
@@ -132,18 +149,12 @@ class AccountController {
 
     }
 
-
-
-
-
-
-    changePassword(req, res, next) {
-        User.findById(req.session.authUser)
-            .then(user => res.render('changePassword', {
-                user: mongooseToObj(user),
-            }))
-
-    }
+    // changePassword(req, res, next) {
+    //     User.findById(req.session.authUser)
+    //         .then(user => res.render('changePassword', {
+    //             user: mongooseToObj(user),
+    //         }))
+    // }
 
     changePasswordPut(req, res, next) {
         // User.updateOne({_id: req.params.id})
@@ -159,7 +170,7 @@ class AccountController {
             user.password_hash = password_hash;
 
             user.save()
-                .then(() => res.redirect('/'))
+                .then(() => res.redirect('/account/profile'))
                 .catch(error => { })
             // delete user.password_hash;
 
