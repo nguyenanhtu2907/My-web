@@ -1,7 +1,8 @@
 const bcrypt = require('bcryptjs');
 const User = require('../models/User');
 const Post = require('../models/Post');
-const { mongooseToObj } = require('../util/mongooseToObj')
+const { mongooseToObj, multipleMongooseToObj } = require('../util/mongooseToObj')
+
 
 // const { delete } = require('../routes/account');
 class AccountController {
@@ -11,7 +12,7 @@ class AccountController {
         });
 
     }
-    registerServer(req, res, next) {
+    registerPost(req, res, next) {
         const password_hash = bcrypt.hashSync(req.body.password, 8);
         const entity = {
             username: req.body.username,
@@ -25,6 +26,7 @@ class AccountController {
                 return res.render('register', {
                     layout: false,
                     message: 'Tên đăng nhập đã tồn tại!!!',
+                    values: req.body,
                 })
 
             } else {
@@ -44,20 +46,23 @@ class AccountController {
     }
 
 
-    loginServer(req, res, next) {
+    loginPost(req, res, next) {
         User.findOne({ username: req.body.username }, function (err, user) {
             if (user) {
+
                 const rs = bcrypt.compareSync(req.body.password, user.password_hash);
                 if (!rs) {
                     return res.render('login', {
                         layout: false,
                         message: 'Tên đăng nhập hoặc mật khẩu không đúng!',
+                        values: req.body,
                     })
                 }
             } else {
                 return res.render('login', {
                     layout: false,
                     message: 'Tên đăng nhập hoặc mật khẩu không đúng!',
+                    values: req.body,
                 })
             }
 
@@ -73,32 +78,92 @@ class AccountController {
     }
 
 
-    changePassword(req, res, next) {
-        User.findById(req.session.authUser)
-        .then(user => res.render('changePassword',{
-            user: mongooseToObj(user),
-        }))
-        
+    profile(req, res, next) {
+        var error = '';
+        var userTarget;
+        Post.find({ author: req.params.id }).limit(10).skip(req.query.page * 10 || 0).sort({ 'createdAt': -1 })
+            .then(posts => multipleMongooseToObj(posts))
+            .then(posts => getPostsInfo(posts))
+            .then(posts => res.json(posts))
+            .catch(() => { res.send(error) })
+
+        User.findOne({ _id: req.params.id }, function (err, user) {
+            if (!user) {
+                error = "Nguoi dung khong ton tai";
+            } else {
+                userTarget = user;
+            }
+            //    return res.render('profile',{
+            //        user: mongooseToObj(user),
+            //        postsByUsername,
+            //    })
+
+            // res.json({ user, postsByUsername, error });
+        })
     }
 
-    changePasswordServer(req, res, next) {
+    profileNav(req, res, next) {
+        Post.find({ author: req.params.id }).limit(10).skip(req.query.page*10 || 0).sort({ 'createdAt': -1 })
+            .then(posts => multipleMongooseToObj(posts))
+            .then(posts => getPostsInfo(posts))
+            .then(posts => res.json(posts))
+            .catch(() => {})
+    }
+
+    editProfile(req, res, next) {
+        //neu req.params.id === req.session.authUser thi vao trang edit
+        // neu khong thi tra ve trang bao loi "Trang ban tim kiem hien khong co, hay quay lai"
+
+        // User.findOne( {_id: req.params.id}, function (err, user){
+        // })
+
+        res.send('Day la trang edit profile user')
+
+    }
+
+    editProfilePut(req, res, next) {
+        //neu req.params.id === req.session.authUser thi vao trang edit
+        // neu khong thi tra ve trang bao loi "Trang ban tim kiem hien khong co, hay quay lai"
+
+        // User.findOne( {_id: req.params.id}, function (err, user){
+        // })
+
+        res.send('Day la trang edit profile user')
+
+    }
+
+
+
+
+
+
+    changePassword(req, res, next) {
+        User.findById(req.session.authUser)
+            .then(user => res.render('changePassword', {
+                user: mongooseToObj(user),
+            }))
+
+    }
+
+    changePasswordPut(req, res, next) {
         // User.updateOne({_id: req.params.id})
         User.findOne({ _id: req.params.id }, function (err, user) {
-                const rs = bcrypt.compareSync(req.body.opassword, user.password_hash);
-                if (!rs) {
-                    return res.render('changePassword', {
-                        message: 'Mật khẩu cũ không đúng!!!',
-                    })
-                }
-                const password_hash = bcrypt.hashSync(req.body.password, 8);
-                user.password_hash=password_hash;
+            const rs = bcrypt.compareSync(req.body.opassword, user.password_hash);
+            if (!rs) {
+                return res.render('changePassword', {
+                    message: 'Mật khẩu cũ không đúng!!!',
 
-                user.save()
-                .then(()=> res.redirect('/'))
-                .catch(error => {})
-                // delete user.password_hash;
+                })
+            }
+            const password_hash = bcrypt.hashSync(req.body.password, 8);
+            user.password_hash = password_hash;
 
-                // req.session.authUser = user;
+            user.save()
+                .then(() => res.redirect('/'))
+                .catch(error => { })
+            // delete user.password_hash;
+
+            // req.session.authUser = user;
         })
     }
 
@@ -124,4 +189,14 @@ class AccountController {
         next()
     }
 }
+
+async function getPostsInfo(posts) {
+    for (var post of posts) {
+        var user = await User.findOne({ _id: post.author });
+        post.authorName = user.fullname;
+        post.authorAvatar = user.avatar;
+    }
+    return posts
+}
+
 module.exports = new AccountController;

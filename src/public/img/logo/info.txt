@@ -1,0 +1,15 @@
+
+Hope you enjoy your new logo, here are the people that
+made your beautiful logo happen :)
+font name: amita-bold
+font link: https://fonts.google.com/specimen/Amita
+font author: Eduardo Tunni
+font author site: http://www.tipo.net.ar/
+
+
+
+fontColor: {"gradient-0":"#E5FF00","gradient-1":"#FC5454"}
+bgColor: {"hex":"#FFFFFF"}
+
+
+      

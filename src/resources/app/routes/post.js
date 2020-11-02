@@ -2,10 +2,11 @@ const express = require('express');
 const router = express.Router();
 
 const postController = require('../controllers/PostController');
+const accountController = require('../controllers/AccountController');
 
-// router.get('/register', postController.register);
+router.get('/create', accountController.restrictLogin, postController.create);
 
-// router.post('/register', postController.registerServer)
+router.post('/create', postController.createPost);
 
 // router.get('/login', postController.login);
 
@@ -17,6 +18,6 @@ const postController = require('../controllers/PostController');
 
 // router.post('/create', postController.createServer)
 
-// router.get('/create', postController.create)
+router.get('/:slug', postController.detail)
 
 module.exports = router;
