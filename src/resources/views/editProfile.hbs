@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Thông tin cá nhân</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/css/editprofile.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="w3-sidebar w3-bar-block w3-light-grey bordertab" style="width:300px">
+            <button class="w3-bar-item w3-button tablink" onclick="openOption(event, 'information', '?type=information')">Thông tin cá
+                nhân</button>
+            <button class="w3-bar-item w3-button tablink" onclick="openOption(event, 'password-option', '?type=password')">Đổi mật
+                khẩu</button>
+            <button class="w3-bar-item w3-button tablink" onclick="openOption(event, 'Tokyo')">Tokyo</button>
+        </div>
+
+        <div style="margin-left:300px">
+            <div id="information" class="w3-container option" style="display:none">
+                <h2>London</h2>
+                <p>London is the capital option of England.</p>
+                <p>It is the most populous option in the United Kingdom, with a metropolitan area of over 13 million
+                    inhabitants.</p>
+            </div>
+
+            <div id="password-option" class="w3-container option">
+                <div class="mt-4">
+                    <h3>Đổi mật khẩu</h3>
+                    
+                    <form id="change-password" class="mt-4" method='POST'
+                        action="/account/{{user._id}}/edit?_method=PUT">
+                        <div class="form-group">
+                            <span class="message"></span> <br>
+                            <label class="form-label" for="opassword">Mật khẩu cũ</label>
+                            <input type="password" class="form-control" id="opassword" name="opassword"
+                                placeholder="Old password">
+                            <span class="form-message">
+                                {{#if message}}
+                                {{message}}
+                                {{/if}}
+                            </span>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="password">Mật khẩu mới</label>
+                            <input type="password" class="form-control" id="password" name="password"
+                                placeholder="New password">
+                            <span class="form-message"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="confirm">Nhập lại mật khẩu mới</label>
+                            <input type="password" class="form-control" id="confirm" name="confirm"
+                                placeholder="Confirm password">
+                            <span class="form-message"></span>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Cập nhật</button>
+                    </form>
+                </div>
+            </div>
+
+            <div id="Tokyo" class="w3-container option" style="display:none">
+                <h2>Tokyo</h2>
+                <p>Tokyo is the capital of Japan.</p>
+                <p>It is the center of the Greater Tokyo Area, and the most populous metropolitan area in the world.</p>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="/javascripts/validator.js"></script>
+    <script>
+        Validator({
+            form: '#change-password',
+            formMessage: '.form-message',
+            formGroupSelector: '.form-group',
+            rules: [
+                Validator.isRequired('#password'),
+                Validator.isRequired('#opassword'),
+                Validator.minLen('#password', 6),
+                Validator.isRequired('#confirm'),
+                Validator.isConfirm('#confirm', function () {
+                    return document.querySelector('#change-password #password').value;
+                }, 'Mật khẩu nhập vào không chính xác!!!'),
+            ],
+            onSubmit: function (data) {
+                fetch('/account/{{user._id}}/edit', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        document.querySelectorAll('#change-password input').forEach(input => {
+                            input.value = '';
+                        })
+                        var messageSpan=document.querySelector('#change-password .message');
+                        messageSpan.innerHTML = data.message;
+
+                        document.querySelectorAll('#change-password input').forEach(input=>{
+                            input.oninput = ()=>{
+                                messageSpan.innerHTML='';
+                            }
+                        })
+
+
+                    })
+                    .catch((error) => {
+                        console.error('Error:', error);
+
+                    });
+            }
+        });
+        function openOption(evt, optionName, url) {
+            var i, x, tablinks;
+            x = document.getElementsByClassName("option");
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablink");
+            for (i = 0; i < x.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" chosen", "");
+            }
+            document.getElementById(optionName).style.display = "block";
+            evt.currentTarget.className += " chosen";
+            history.pushState({edit: 1}, '', url)
+        }
+
+    </script>
+
+</body>
+
+</html>

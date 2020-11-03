@@ -1,5 +1,3 @@
-
-
 var getUrlParameter = function getUrlParameter(sParam) {
     var sPageURL = window.location.search.substring(1),
         sURLVariables = sPageURL.split('&'),
@@ -15,8 +13,6 @@ var getUrlParameter = function getUrlParameter(sParam) {
 var pagePT = getUrlParameter('page');
 
 $(document).ready(function () {
-    
-
     //disabled các nút trước sau
     if(pagePT.toString() == "1") {
         $(".pre").addClass("disabled");

@@ -1,0 +1,22 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+}
+ul li{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+}
+.chosen{
+    background-color: #fff;
+}
+.bordertab{
+    border-left: 1px solid rgb(213 213 213);
+}
+.form-message{
+    color: #f33a58;
+    
+}
+.message{
+    color: rgb(25, 200, 98);
+}

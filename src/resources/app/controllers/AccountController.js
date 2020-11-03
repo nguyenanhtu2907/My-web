@@ -115,16 +115,17 @@ class AccountController {
     editProfile(req, res, next) {
         //neu req.params.id === req.session.authUser thi vao trang edit
         // neu khong thi tra ve trang bao loi "Trang ban tim kiem hien khong co, hay quay lai"
-        if (req.params.id == req.session.authUser.id && (req.query.type=='infomation' ||req.query.type=='password')) {
+        console.log(req.session.authUser._id)
+        if (req.params.id === req.session.authUser._id && (req.query.type==='information' || req.query.type==='password')) {
             User.findOne({ _id: req.params.id }, function (err, user) {
-                var error = ''
                 if (!user) {
-                    error = "Nguoi dung khong ton tai";
+                    return res.render('error404', {
+                        layout:false,
+                    })
                 } else {
                     return res.render('editProfile', {
                         layout: false,
-                        user,
-                        error,
+                        user : mongooseToObj(user),
                         type: req.query.type,
                     })
                 }
@@ -161,17 +162,26 @@ class AccountController {
         User.findOne({ _id: req.params.id }, function (err, user) {
             const rs = bcrypt.compareSync(req.body.opassword, user.password_hash);
             if (!rs) {
-                return res.render('changePassword', {
-                    message: 'Mật khẩu cũ không đúng!!!',
-
+                // return 
+                // res.render('editProfile', 
+                res.json({
+                    message: '*Mật khẩu cũ không đúng!!!',
+                    res: 0,
+                    // layout:false,
+                    // user: mongooseToObj(user),
+                    // type: 'password',
                 })
+                // )
             }
             const password_hash = bcrypt.hashSync(req.body.password, 8);
             user.password_hash = password_hash;
 
             user.save()
-                .then(() => res.redirect('/account/profile'))
-                .catch(error => { })
+                .then(() => res.json({
+                    message: '*Đổi mật khẩu thành công!!!',
+                    res: 1,
+                }))
+                .catch(error => {})
             // delete user.password_hash;
 
             // req.session.authUser = user;
