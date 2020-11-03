@@ -145,20 +145,57 @@ body{
     border-radius: 8px;
 }
 
+.comment{
+    width: 600px;
+    margin: auto;   
+     /* border: 1px solid rgb(74,74,74); */
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
 .comment_title{
     font-size: 2.5rem;
     color: rgb(74,74,74);
 }
 .comment_main{
     display: flex;
-    justify-content: center;
+    align-items: center;
+    /* justify-content: center; */
+}
+.input{
+    flex:1
+}
+.comment_list{
+
+    list-style: none;
+    padding-left:0 ;
+}
+
+.comment_item{
+    display: flex;
+    padding-left: 0;
+    margin-bottom: 10px;
+}
+
+.comment_text{
+    flex: 1;
+    padding-top: 4px ;
+    font-size: 1.5rem;
+    color: rgb(74,74,74);
+
+}
+.delete_comment{
+    color: rgb(74,74,74);
+    font-size: 1.5rem;
+    margin: auto;
 }
 .user_img{
     align-items: center;
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 35px;
     border-radius: 50%;
-    margin-right: 10px;
+    margin-right: 5px;
+    /* margin-top: 8px; */
 }
 .comment_input{
     flex:1;
@@ -167,11 +204,12 @@ body{
     border-radius: 10px;
     border:none;
     outline: none;
+    font-size:1.5rem;
 }
 
 .input{
     display: flex;
-    height: 30px;
+    height: 35px;
     margin-top: 8px;
     width: 400px;
     border-radius: 10px;

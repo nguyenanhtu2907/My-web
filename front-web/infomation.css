@@ -43,18 +43,6 @@ input[type="file"]{
     border-radius: 50%;
     
 }
-
-label.image{
-    width: 200px;
-    height: 200px;
-}
-
-label.image img{
-    width: 200px;
-    border-radius: 50%;
-    height: 200px;
-    object-fit: cover;
-}
 .name{
     text-align: center;
     align-items: center;
@@ -94,19 +82,22 @@ label.image img{
     bottom: -70px;
     opacity: 60%; 
 }
+
+
 .nav-item{
         font-size: 2rem;
         margin-top: 20px;
         /* display: none; */
 }
-.recipes{
+/* .recipes{
     
     
-}
+} */
 .recipes_list{
     position: relative;
     margin-top: 80px;
     padding-left: 0;
+    list-style: none;
     
 }
 .recipes_item{
@@ -132,13 +123,13 @@ label.image img{
 .cook_link:hover{
     text-decoration: none;
 }
-.recipes_item-main{
+/* .recipes_item-main{
 
 }
 .recipes_item-main--nick{
     
     
-}
+} */
 
 .recipes_item-nick--image{
     width: 40px;
