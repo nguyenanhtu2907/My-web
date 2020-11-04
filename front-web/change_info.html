@@ -38,24 +38,39 @@
                                 <input type="text" id = "name" name="name" placeholder="Họ và tên">
                                 <i class="fas fa-user"></i>
                             </div>
-    
-                            <div class="title">Ngày sinh:</div>
-                            <div class="input_item date">
-                                <input type="date" id="date" name="date" placeholder="Ngày sinh">
-                            </div>
+                            
+                            <div class="title">Giới tính: </div>
+                            
+                                <div class="form-gender">
+                                    
+                                    <div class="gender">
+                                        <input type="radio" name="gender" class="form-control" value="male">Nam
+                                    </div>
+                                    <div class="gender">
+                                        <input type="radio" name="gender" class="form-control" value="female">Nữ
+                                    </div>
+                                    <div class="gender">
+                                        <input type="radio" name="gender" class="form-control" value="other">Khác
+                                    </div>
+                                </div>
+                            
+                            
                         </div>
     
                         <div class="address_and_number col-lg-6">
-                            <div class="title">Địa chỉ: </div>
-                            <div class="input_item address">
-                                <input type="text" id= "address" name="address" placeholder="Địa chỉ">
-                                <i class="fas fa-address-card"></i>
+                            
+                            <div class="title">Email:</div>
+                            <div class="input_item date">
+                                <input type="email" id="email" name="email" placeholder="Nhập email">
+                                <i class="fas fa-envelope"></i>
                             </div>
-                            <div class="title">Số điện thoai:</div>
-                            <div class="input_item number">
-                                <input type="telephone" id="telephone" name="phone_number" placeholder="Điện thoại">
-                                <i class="fas fa-phone"></i>
+
+                            <div class="title">Giới thiệu về bản thân:</div>
+                            <div class="input_introduce">
+                                <textarea  class="introduce_area"name="intro" id="intro" cols="30" rows="10"></textarea>
+
                             </div>
+                            
                         </div>
                     
                     
@@ -66,16 +81,24 @@
         </form>
 
         <form id = "upload_password" class="password no_display">
-            <div class="title">User name</div>
-            <div class="input_item user_name">
-                <input type="text" id = "user_name" name="user_name" placeholder="User name">
+            
+
+            <div class="title">Mật khẩu cũ</div>
+            <div class="input_item pass">
+                <input type="text" id = "password" name="password" placeholder="Password">
                 <!-- <i class="fas fa-user"></i> -->
                                         
             </div>
 
-            <div class="title">Password</div>
-            <div class="input_item pass">
-                <input type="text" id = "password" name="password" placeholder="Password">
+            <div class="title">Mật khẩu mới</div>
+            <div class="input_item new_pass">
+                <input type="text" id = "new_password" name="new_password" placeholder="New password">
+                <!-- <i class="fas fa-user"></i> -->
+                                        
+            </div>
+            <div class="title">Nhập lại mật khẩu</div>
+            <div class="input_item retype_pass">
+                <input type="text" id = "retype_password" name="retype_password" placeholder="Retype password">
                 <!-- <i class="fas fa-user"></i> -->
                                         
             </div>
