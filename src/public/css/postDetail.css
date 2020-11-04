@@ -4,15 +4,26 @@ body{
 
 .containers{
     position: relative;
+    top: -40px;
     margin-left: auto;
     margin-right:auto;
     width: 700px;
     background-color: white;
 }
-
+.comment_link{
+    color: rgb(27, 27, 27);
+    font-weight: 500;
+}
+.comment_link:hover{
+    color: rgb(27, 27, 27);
+    text-decoration: none;
+}
 .recipes_profile{
     position: absolute;
     top: 50px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    padding: 0 30px;
+    border-radius: 10px;
 }
 .cook_image{
     width: 680px;
@@ -224,8 +235,8 @@ body{
     border-radius: 0 10px 10px 0;
 }
 
-.btn1:hover{
+/* .btn1:hover{
     background-color:rgb(255,153,51);
-}
+} */
 
 

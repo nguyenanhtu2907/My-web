@@ -87,12 +87,16 @@
                         <ul class="comment_list">
                             {{#each comments}}
                             <li class="comment_item">
-                                <img src="{{this.authorAvatar}}" alt="" class="user_img">
-                                <span class="comment_text">{{this.content}}</span>
+                                <div class="flex-1">
+                                    <a class="comment_link" href=""><img src="{{this.authorAvatar}}" alt=""
+                                            class="user_img">{{this.authorName}}</a>
+                                    <br>
+
+                                    <p class="comment_text" style="margin-left: 43px;">{{this.content}}</p>
+                                </div>
                                 {{#ifCond ../user._id this.authorId }}
                                 <span><i class="fas fa-times delete_comment" onclick="deleteComment(event)"></i></span>
                                 {{/ifCond}}
-                                
                             </li>
                             {{/each}}
                         </ul>
@@ -101,8 +105,8 @@
                         <img src="{{#if user}}{{user.avatar}}{{else}}/img/logodf.png{{/if}}" alt="" class="user_img">
                         <div class="input">
                             <input class="comment_input" type="text" placeholder="Bình luận">
-                            <button class="btn1">
-                                <i class="far fa-paper-plane"></i> </button>
+                            {{#if user}}<button class="btn1">{{else}}<button class="btn1" disabled title="Vui lòng đăng nhập để bình luận bài viết!">{{/if}}
+                            <i class="far fa-paper-plane"></i> </button>
                         </div>
 
                     </div>
