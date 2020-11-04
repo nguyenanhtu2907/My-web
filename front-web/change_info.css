@@ -118,7 +118,7 @@ label.image img{
     height: 100%;
     border:none;
     outline: none;
-    border-radius: 15px;
+    border-radius: 20px;
     padding-left: 10px;
     
 }
@@ -129,16 +129,52 @@ label.image img{
     justify-content: center;
     align-items: center;
     border: 1px solid;
-    border-radius: 15px;
+    border-radius: 20px;
     height: 45px;
-    margin: 0 15px 15px 10px ;
+    margin: 0 30px 30px 10px ;
 }
 
 .row i{
     font-size: 2.5rem;
     padding-right: 5px;
 }
+/* .input_sex{
+    font-size: 1.5rem;
+} */
 
+.form-gender{
+    display: flex;
+    font-size: 2rem;
+}
+.gender{
+    display: flex;
+    margin-top: 8px;
+    position: relative; 
+    left: 20px;
+    margin-right: 50px;
+    padding: 7px 0;
+}
+.gender input{
+    font-size: 1px;
+    width: 20px;
+    cursor: pointer;
+    margin-top: 4px;
+    margin-right: 3px;
+}
+
+.input_introduce{
+    
+}
+
+.introduce_area{
+    margin: 0 15px 15px 10px;
+    width: 300px;
+    height: 80px;
+    outline: none;
+    border: 1px solid rgb(74,74,74);
+    font-size: 1.5rem;
+    /* border-radius: 20px; */
+}
 #submit_info{
     font-weight: 500;
     font-size: 1.7rem;
@@ -170,7 +206,7 @@ label.image img{
     height: 100%;
     border:none;
     outline: none;
-    border-radius: 15px;
+    border-radius: 20px;
     padding-left: 10px;    
 }
 
