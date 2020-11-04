@@ -61,16 +61,16 @@ label.image img{
     margin: auto;
 }
 .country{
-    max-width: 200px;
+    max-width: 400px;
     display: flex;
     margin:auto;
-    justify-items: center;
+    /* justify-items: center; */
 }
 
-.quocgia  {
-    min-width: 60px;
+.introduce  {
+    min-width: 100px;
     font-size: 1.5rem;
-    justify-content: center;
+    text-align: center;    
     padding-right: 5px;
 }
 

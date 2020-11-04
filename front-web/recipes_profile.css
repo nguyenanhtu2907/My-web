@@ -7,11 +7,11 @@ body{
     margin-left: auto;
     margin-right:auto;
     width: 700px;
-    background-color:rgb(236, 147, 52);
+    background-color:rgb(255, 255, 255);
 }
 
 .recipes_profile{
-    position: absolute;
+    position: static;
     top: 50px;
 }
 .cook_image{
@@ -227,4 +227,6 @@ body{
     background-color:rgb(255,153,51);
 }
 
-
+.relax{
+    position: none;
+}
