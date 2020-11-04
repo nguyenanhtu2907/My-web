@@ -3,6 +3,7 @@ const User = require('../models/User')
 const Post = require('../models/Post');
 const { mongooseToObj, multipleMongooseToObj } = require('../util/mongooseToObj');
 const { post } = require('../routes/post');
+const e = require('express');
 
 class PostController {
     create(req, res, next) {
@@ -45,12 +46,19 @@ class PostController {
             .then(post => mongooseToObj(post))
             .then(post => getPostInfo(post))
             .then(function (post) {
-                Post.find({ author: post.author }).limit(3).sort({ 'createdAt': -1 })
-                    .then(posts => multipleMongooseToObj(posts))
-                    .then(posts => res.render('postDetail',{
+                let num = Post.count({author: post.author}, function(err, num){
+                    if(num){
+                        return num;
+                    }
+                    return err;
+                })
+                Post.find({ author: post.author }).limit(3).skip(Math.random(num-2)).sort({ 'createdAt': -1 })
+                    .then(morePosts => multipleMongooseToObj(morePosts))
+                    .then(morePosts => getPostsInfo(morePosts))
+                    .then(morePosts => res.render('postDetail',{
                         post,
                         comments: post.comments,
-                        posts,
+                        morePosts,
                         user: req.session.authUser,
                         layout:false,
                     }))
@@ -59,7 +67,6 @@ class PostController {
             .catch(() => res.render('error404',{
                 layout:false
             }))
-
     }
     
     addComment(req, res, next){

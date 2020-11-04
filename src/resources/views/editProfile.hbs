@@ -96,7 +96,7 @@
                 }, 'Mật khẩu nhập vào không chính xác!!!'),
             ],
             onSubmit: function (data) {
-                fetch('/account/{{user._id}}/edit', {
+                fetch('/account/{{user._id}}/edit-password', {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
@@ -110,14 +110,11 @@
                         })
                         var messageSpan=document.querySelector('#change-password .message');
                         messageSpan.innerHTML = data.message;
-
                         document.querySelectorAll('#change-password input').forEach(input=>{
                             input.oninput = ()=>{
                                 messageSpan.innerHTML='';
                             }
                         })
-
-
                     })
                     .catch((error) => {
                         console.error('Error:', error);

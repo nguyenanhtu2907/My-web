@@ -18,8 +18,9 @@ router.post('/login', accountController.loginPost);
 
 // router.get('/change-password', accountController.restrictLogin, accountController.changePassword);
 
-router.put('/:id/edit', accountController.changePasswordPut);
+router.put('/:id/edit-password', accountController.editPasswordPut);
 
+router.put('/:id/edit-information', accountController.editInformationPut);
 
 // router.get('/create', accountController.create)
 

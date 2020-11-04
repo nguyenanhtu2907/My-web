@@ -75,12 +75,24 @@ class AccountController {
     profile(req, res, next) {
         var error = '';
         var userTarget;
-
         User.findOne({ _id: req.params.id }, function (err, user) {
             if (!user) {
                 error = "Nguoi dung khong ton tai";
             } else {
                 userTarget = user;
+                Post.find({ author: req.params.id }).limit(10).skip(req.query.page * 10 || 0).sort({ 'createdAt': -1 })
+                    .then(posts => multipleMongooseToObj(posts))
+                    .then(posts => getPostsInfo(posts))
+                    .then(posts => {
+                        if (userTarget) {
+                            res.json({ userTarget, posts, countPost: posts.length })
+                        } else {
+                            return res.render('error404', {
+                                layout: false
+                            })
+                        }
+                    }) //render profile page
+                    .catch(() => { res.send(error) }) //reder error
             }
             //    return res.render('profile',{
             //        user: mongooseToObj(user),
@@ -89,19 +101,7 @@ class AccountController {
 
             // res.json({ user, postsByUsername, error });
         })
-        Post.find({ author: req.params.id }).limit(10).skip(req.query.page * 10 || 0).sort({ 'createdAt': -1 })
-            .then(posts => multipleMongooseToObj(posts))
-            .then(posts => getPostsInfo(posts))
-            .then(posts => {
-                if (userTarget) {
-                    res.json({ userTarget, posts, countPost: posts.length })
-                } else {
-                    return res.render('error404', {
-                        layout: false
-                    })
-                }
-            }) //render profile page
-            .catch(() => { res.send(error) }) //reder error
+
     }
     //link: /post/:id/nav?page=... fetch data 
     profileNav(req, res, next) {
@@ -115,39 +115,43 @@ class AccountController {
     editProfile(req, res, next) {
         //neu req.params.id === req.session.authUser thi vao trang edit
         // neu khong thi tra ve trang bao loi "Trang ban tim kiem hien khong co, hay quay lai"
-        console.log(req.session.authUser._id)
-        if (req.params.id === req.session.authUser._id && (req.query.type==='information' || req.query.type==='password')) {
+        // console.log(req.session.authUser._id)
+        if (req.params.id === req.session.authUser._id && (req.query.type === 'information' || req.query.type === 'password')) {
             User.findOne({ _id: req.params.id }, function (err, user) {
                 if (!user) {
                     return res.render('error404', {
-                        layout:false,
+                        layout: false,
                     })
                 } else {
                     return res.render('editProfile', {
                         layout: false,
-                        user : mongooseToObj(user),
+                        user: mongooseToObj(user),
                         type: req.query.type,
                     })
                 }
             })
-        }else{
+        } else {
             return res.render('error404', {
-                layout:false,
+                layout: false,
             })
         }
 
         // res.send('Day la trang edit profile user')
     }
-
-    editProfilePut(req, res, next) {
-        //neu req.params.id === req.session.authUser thi vao trang edit
-        // neu khong thi tra ve trang bao loi "Trang ban tim kiem hien khong co, hay quay lai"
-
-        // User.findOne( {_id: req.params.id}, function (err, user){
-        // })
-
-        res.send('Day la trang edit profile user')
-
+    //cap nhat thong tin ca nhan 
+    editInformationPut(req, res, next) {
+        User.findOne({ _id: req.params.id }, function (err, user) {
+            user.fullname = req.body.fullname;
+            user.email = req.body.email;
+            user.gender = req.body.gender;
+            user.user_description = req.body.user_description;
+            user.save()
+                .then(() => res.json({
+                    message: '*Đổi mật khẩu thành công!!!',
+                    user: user,
+                }))
+                .catch(error => { })
+        })
     }
 
     // changePassword(req, res, next) {
@@ -156,8 +160,8 @@ class AccountController {
     //             user: mongooseToObj(user),
     //         }))
     // }
-
-    changePasswordPut(req, res, next) {
+    //cap nhat mat khau
+    editPasswordPut(req, res, next) {
         // User.updateOne({_id: req.params.id})
         User.findOne({ _id: req.params.id }, function (err, user) {
             const rs = bcrypt.compareSync(req.body.opassword, user.password_hash);
@@ -181,9 +185,8 @@ class AccountController {
                     message: '*Đổi mật khẩu thành công!!!',
                     res: 1,
                 }))
-                .catch(error => {})
+                .catch(error => { })
             // delete user.password_hash;
-
             // req.session.authUser = user;
         })
     }

@@ -1,7 +1,6 @@
 body{
     background-color:rgb(252,252,240);
 }
-
 .containers{
     position: relative;
     top: -40px;
@@ -9,6 +8,7 @@ body{
     margin-right:auto;
     width: 700px;
     background-color: white;
+    align-items: center;
 }
 .comment_link{
     color: rgb(27, 27, 27);
@@ -238,5 +238,21 @@ body{
 /* .btn1:hover{
     background-color:rgb(255,153,51);
 } */
-
+.more-post{
+    position: absolute;
+    width: 112%;
+    margin-left: 8px;
+    margin-bottom: 20px;
+    padding-right: 50px;
+}
+.posts{
+    display: flex;
+    justify-content: space-between;
+}
+.more-post .card{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+a{
+    color: rgb(53, 53, 53);
+}
 

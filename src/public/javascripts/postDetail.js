@@ -1,11 +1,6 @@
 $(document).ready(function () {
   //add comment
   document.querySelector('.btn1').onclick = function () {
-    //neu chua co "cái gì dó" thì hiện thông báo cần phải đăng nhập gấp
-
-
-
-
     var data = {
       content: document.querySelector('.comment_input').value,
     };
@@ -26,9 +21,10 @@ $(document).ready(function () {
             <span><i class="fas fa-times delete_comment" onclick="deleteComment(event)"></i></span>
           </li>
           `;
-        document.querySelector('.comment_input').value='';
+
+        document.querySelector('.comment_input').value = '';
       })
-      .catch(error => {});
+      .catch(error => { });
   };
 });
 
@@ -47,3 +43,5 @@ function deleteComment(e) {
     .catch(error => {
     });
 }
+
+document.querySelector('.more-post').style.top = document.querySelector('.recipes_profile').offsetHeight +90+'px';

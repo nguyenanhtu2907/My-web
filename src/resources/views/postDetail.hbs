@@ -105,8 +105,9 @@
                         <img src="{{#if user}}{{user.avatar}}{{else}}/img/logodf.png{{/if}}" alt="" class="user_img">
                         <div class="input">
                             <input class="comment_input" type="text" placeholder="Bình luận">
-                            {{#if user}}<button class="btn1">{{else}}<button class="btn1" disabled title="Vui lòng đăng nhập để bình luận bài viết!">{{/if}}
-                            <i class="far fa-paper-plane"></i> </button>
+                            {{#if user}}<button class="btn1">{{else}}<button class="btn1" disabled
+                                    title="Vui lòng đăng nhập để bình luận bài viết!">{{/if}}
+                                    <i class="far fa-paper-plane"></i> </button>
                         </div>
 
                     </div>
@@ -114,10 +115,28 @@
                 <hr>
             </div>
         </div>
+        <div class="more-post">
+            <h3 class="comment_title">Một số bài viết khác</h3>
+            <div class="posts">
+                {{#each morePosts}}
+                <div class="card" style="width:32%;">
+                    <a class="comment_link" style="font-size: 23px;" href="/post/{{this.slug}}"> <img
+                            class="card-img-top" src="{{this.thumbnail}}" alt="Card image" style="width:100%;"></a>
+                    <div class="card-body">
+                        <a class="comment_link" style="font-size: 23px;" href="/post/{{this.slug}}">{{this.title}}</a>
+                        <br>
+                        <a class="comment_link" style="font-weight: 400; font-size: 14px;"
+                            href="/account/{{this.author}}">{{this.authorName}}</a>
+                    </div>
+                </div>
+                <br>
+                {{/each}}
+            </div>
 
-
-
+        </div>
     </div>
+
+
     <script src="/javascripts/postDetail.js"></script>
 </body>
 
