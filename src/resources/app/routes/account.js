@@ -35,4 +35,6 @@ router.get('/:id/nav', accountController.profileNav);
 
 router.get('/:id/edit', accountController.restrictLogin, accountController.editProfile);
 
+
+
 module.exports = router;

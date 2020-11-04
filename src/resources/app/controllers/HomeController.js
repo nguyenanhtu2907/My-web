@@ -21,7 +21,8 @@ class HomeController {
     }
 
     moreFollowedFeed(req, res, next) {
-        Post.find({}).limit(20).skip(req.params.index * 20).sort({ 'createdAt': -1 })
+        console.log(req.session.authUser.following[0])
+        Post.find({author: req.session.authUser.following[0]}).limit(20).skip(req.params.index * 20).sort({ 'createdAt': -1 })
         .then(posts => multipleMongooseToObj(posts))
         .then(posts => getPostsInfo(posts))
         .then(posts => res.json(posts))

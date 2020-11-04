@@ -25,6 +25,7 @@ class PostController {
         const entity = {
             title: req.body.title,
             author: req.body.author,
+            timecook: req.body.timecook,
             thumbnail: req.body.thumbnail,
             ration: req.body.ration,
             postdescription: req.body.postdescription,
@@ -46,7 +47,13 @@ class PostController {
             .then(function (post) {
                 Post.find({ author: post.author }).limit(3).sort({ 'createdAt': -1 })
                     .then(posts => multipleMongooseToObj(posts))
-                    .then(posts => res.json({post, posts}))
+                    .then(posts => res.render('postDetail',{
+                        post,
+                        comments: post.comments,
+                        posts,
+                        user: req.session.authUser,
+                        layout:false,
+                    }))
                     .catch(() => {}) 
             })
             .catch(() => res.render('error404',{
@@ -54,46 +61,31 @@ class PostController {
             }))
 
     }
-    // login(req, res, next) {
-    //     res.render('login', {
-    //         layout: false,
-    //     });
-    // }
-    // loginServer(req, res, next) {
-    //     User.findOne({ username: req.body.username }, function (err, user) {
-    //         if (user) {
-    //             const rs = bcrypt.compareSync(req.body.password, user.password_hash);
-    //             if (!rs) {
-    //                 return res.render('login', {
-    //                     layout: false,
-    //                     message: 'Tên đăng nhập hoặc mật khẩu không đúng!',
-    //                 })
-    //             } 
-    //         } else {
-    //             return res.render('login', {
-    //                 layout: false,
-    //                 message: 'Tên đăng nhập hoặc mật khẩu không đúng!',
-    //             })
-    //         }
-
-    //         delete user.password_hash;
-    //         req.session.isAuthenticated = true;
-    //         req.session.authUser = user;
-
-    //         res.redirect('/account/profile')
-    //     })
-    // }
-
-    // retrict(req, res, next) {
-    //     if(!req.session.isAuthenticated){
-    //         return res.redirect('/account/login')
-    //     }
-    //     next()
-    // }
-
-    // profile(req, res, next){
-    //     res.json(req.session.authUser)
-    // }
+    
+    addComment(req, res, next){
+        var comment = {
+            authorName: req.session.authUser.fullname,
+            authorId: req.session.authUser._id,
+            authorAvatar: req.session.authUser.avatar,
+            content: req.body.content,
+        }
+        Post.findOne({slug: req.params.slug})
+            .then(post=> {
+                post.comments.push(comment);
+                post.save()
+                .then(()=>res.json(post.comments))
+                .catch(()=>{})
+            })
+    }
+    deleteComment(req, res, next){
+        Post.findOne({slug: req.params.slug})
+            .then(post=> {
+                post.comments.pop();
+                post.save()
+                .then(()=>res.json(post.comments))
+                .catch(()=>{})
+            })
+    }
 
 
 }
