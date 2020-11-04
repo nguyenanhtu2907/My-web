@@ -43,6 +43,18 @@ input[type="file"]{
     border-radius: 50%;
     
 }
+
+label.image{
+    width: 200px;
+    height: 200px;
+}
+
+label.image img{
+    width: 200px;
+    border-radius: 50%;
+    height: 200px;
+    object-fit: cover;
+}
 .name{
     text-align: center;
     align-items: center;
