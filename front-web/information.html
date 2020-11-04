@@ -7,7 +7,10 @@
     <link rel="stylesheet" href="./infomation.css">
     <link rel="stylesheet" href="./base.css">
     <link rel="stylesheet"  href="./font/css/all.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -16,143 +19,260 @@
     </div>
     <div class="containers">
         <div class="avatar">
+            
             <div class="avatar_main">
-                <!-- <input type="file" id = "avatar" accept="image/*" name="avatar_main"> -->
-                <!-- <label for="avatar" id = "selector" class="avatar_label"></label> -->
-                <img src="../src/public/img/logodf.png" alt="" class="avatar_label">
+                <input type="file" id = "avatar" accept="image/*" name="avatar_main">
+                <label for="avatar" id = "selector" class="avatar_label"></label>
                 <div class="name">
                     <h3>Quang Tùng</h3>
                 </div>
             </div>
-            <p style="font-size: 15px;">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corporis nostrum, iusto suscipit, a excepturi ipsum dolor blanditiis ut nesciunt consequatur reprehenderit cum magnam quos quibusdam repudiandae dolore assumenda at. Numquam?
-            </p>
+            
+            <div class="country">
+                <span class="introduce">
+                    cái gì đấy rất là cái gì đấy rất ra cái gì đấy là 1 cái gì đấy rất chi là ra gì thực sự là một cái gì là cái gì như cái gì là cái gì thêm cái gì
+                </span> 
+                <!-- <input type="text" class="country_input" placeholder="Quốc gia"> -->
+            </div>
         </div>
 
-        <ul class="nav borders">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item">
-              <a class="nav-link disabled" href="./infomation.html">Đã lưu
-                <div class="bookmarks">
+              <a class="nav-link active" id="saved_cook-tab" data-toggle="tab" href="#saved_cook" role="tab" aria-controls="home" aria-selected="true">Đã lưu</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="my_cook-tab" data-toggle="tab" href="#my_cook" role="tab" aria-controls="profile" aria-selected="false">Món của tôi</a>
+            </li>
+            
+          </ul>
+          <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="saved_cook" role="tabpanel" aria-labelledby="home-tab"> 
+                <div class="recipes">
+                    <ul class="recipes_list">
+                        <li class="recipes_item">
+                            <a href="#" class="cook_link">
+                                <div class="recipes_item-main">
+                                    <div class="recipes_item-main--nick">
+                                        <img class="recipes_item-nick--image" src="./image/tudu.jpg" alt="">
+                                        <span class="nick_name">Linh cao</span>
+                                    </div>
+                                    <div class="title">
+                                        <h3 class="title_text">Soda dấm táo</h3>
+                                    </div>
+                                    <div class="time_and_ration">
+                                        <span class="time"><i class="fas fa-stopwatch time_icon"></i>
+                                          20 phút
+                                      </span>
+                                      <span class="ration"><i class="fas fa-user ration_icon"></i>
+                                      2</span>
+                                    </div>
+                                    <div class="description">
+                                        <p class="description_info"> Đậu tây, Trứng, Hành lá, Tiêu, Bột nêm, Đường, dầu hào
+                                        </p>
+                                    </div>
+                                    
+                                </div>
+                                <div class="cook_image">
+                                    <img class="recipes_item-main--image" src="./image/mi_xao.jpg" alt="">
+                                </div>
+        
+                            </a>
+                        </li>
+                        <li class="recipes_item">
+                            <a href="#" class="cook_link">
+                                <div class="recipes_item-main">
+                                    <div class="recipes_item-main--nick">
+                                        <img class="recipes_item-nick--image" src="./image/tudu.jpg" alt="">
+                                        <span class="nick_name">Linh cao</span>
+                                    </div>
+                                    <div class="title">
+                                        <h3 class="title_text">Soda dấm táo</h3>
+                                    </div>
+                                    <div class="time_and_ration">
+                                        <span class="time"><i class="fas fa-stopwatch time_icon"></i>
+                                          20 phút
+                                      </span>
+                                      <span class="ration"><i class="fas fa-user ration_icon"></i>
+                                      2</span>
+                                    </div>
+                                    <div class="description">
+                                        <p class="description_info"> Đậu tây, Trứng, Hành lá, Tiêu, Bột nêm, Đường, dầu hào
+                                        </p>
+                                    </div>
+                                    
+                                </div>
+                                <div class="cook_image">
+                                    <img class="recipes_item-main--image" src="./image/mi_xao.jpg" alt="">
+                                </div>
+        
+                            </a>
+                        </li>
+                        
+                        <li class="recipes_item">
+                            <a href="#" class="cook_link">
+                                <div class="recipes_item-main">
+                                    <div class="recipes_item-main--nick">
+                                        <img class="recipes_item-nick--image" src="./image/tudu.jpg" alt="">
+                                        <span class="nick_name">Linh cao</span>
+                                    </div>
+                                    <div class="title">
+                                        <h3 class="title_text">Soda dấm táo</h3>
+                                    </div>
+                                    <div class="time_and_ration">
+                                        <span class="time"><i class="fas fa-stopwatch time_icon"></i>
+                                          20 phút
+                                      </span>
+                                      <span class="ration"><i class="fas fa-user ration_icon"></i>
+                                      2</span>
+                                    </div>
+                                    <div class="description">
+                                        <p class="description_info"> Đậu tây, Trứng, Hành lá, Tiêu, Bột nêm, Đường, dầu hào
+                                        </p>
+                                    </div>
+                                    
+                                </div>
+                                <div class="cook_image">
+                                    <img class="recipes_item-main--image" src="./image/mi_xao.jpg" alt="">
+                                </div>
+        
+                            </a>
+                        </li>
+                    </ul>
+        
+                    <nav aria-label="Page navigation example" class="next_page">
+                        <ul class="pagination">
+                          <li class="page-item pre">
+                            <a class="page-link" href="#" aria-label="Previous">
+                              <span aria-hidden="true">&laquo;</span>
+                            </a>
+                          </li>
+                          <li class="page-item active"><a class="page-link " href="?page=1">1</a></li>
+                          <li class="page-item"><a class="page-link" href="?page=2">2</a></li>
+                          <li class="page-item"><a class="page-link" href="?page=3">3</a></li>
+                          <li class="page-item next">
+                            <a class="page-link " href="#" aria-label="Next">
+                              <span aria-hidden="true">&raquo;</span>
+                            </a>
+                          </li>
+                        </ul>
+                      </nav>
+                    </div>
+            </div>
+
+            <div class="tab-pane fade" id="my_cook" role="tabpanel" aria-labelledby="profile-tab">
+                <div class="recipes">
+                    <ul class="recipes_list">
+                        <li class="recipes_item">
+                            <a href="#" class="cook_link">
+                                <div class="recipes_item-main">
+                                    <div class="recipes_item-main--nick">
+                                        <img class="recipes_item-nick--image" src="./image/tudu.jpg" alt="">
+                                        <span class="nick_name">Linh cao</span>
+                                    </div>
+                                    <div class="title">
+                                        <h3 class="title_text">Soda dấm táo</h3>
+                                    </div>
+                                    <div class="time_and_ration">
+                                        <span class="time"><i class="fas fa-stopwatch time_icon"></i>
+                                          20 phút
+                                      </span>
+                                      <span class="ration"><i class="fas fa-user ration_icon"></i>
+                                      2</span>
+                                    </div>
+                                    <div class="description">
+                                        <p class="description_info"> Đậu tây, Trứng, Hành lá, Tiêu, Bột nêm, Đường, dầu hào
+                                        </p>
+                                    </div>
+                                    
+                                </div>
+                                <div class="cook_image">
+                                    <img class="recipes_item-main--image" src="./image/mi_xao.jpg" alt="">
+                                </div>
+        
+                            </a>
+                        </li>
+                        <li class="recipes_item">
+                            <a href="#" class="cook_link">
+                                <div class="recipes_item-main">
+                                    <div class="recipes_item-main--nick">
+                                        <img class="recipes_item-nick--image" src="./image/tudu.jpg" alt="">
+                                        <span class="nick_name">Linh cao</span>
+                                    </div>
+                                    <div class="title">
+                                        <h3 class="title_text">Soda dấm táo</h3>
+                                    </div>
+                                    <div class="time_and_ration">
+                                        <span class="time"><i class="fas fa-stopwatch time_icon"></i>
+                                          20 phút
+                                      </span>
+                                      <span class="ration"><i class="fas fa-user ration_icon"></i>
+                                      2</span>
+                                    </div>
+                                    <div class="description">
+                                        <p class="description_info"> Đậu tây, Trứng, Hành lá, Tiêu, Bột nêm, Đường, dầu hào
+                                        </p>
+                                    </div>
+                                    
+                                </div>
+                                <div class="cook_image">
+                                    <img class="recipes_item-main--image" src="./image/mi_xao.jpg" alt="">
+                                </div>
+        
+                            </a>
+                        </li>
+                        
+                        <li class="recipes_item">
+                            <a href="#" class="cook_link">
+                                <div class="recipes_item-main">
+                                    <div class="recipes_item-main--nick">
+                                        <img class="recipes_item-nick--image" src="./image/tudu.jpg" alt="">
+                                        <span class="nick_name">Linh cao</span>
+                                    </div>
+                                    <div class="title">
+                                        <h3 class="title_text">Soda dấm táo</h3>
+                                    </div>
+                                    <div class="time_and_ration">
+                                        <span class="time"><i class="fas fa-stopwatch time_icon"></i>
+                                          20 phút
+                                      </span>
+                                      <span class="ration"><i class="fas fa-user ration_icon"></i>
+                                      2</span>
+                                    </div>
+                                    <div class="description">
+                                        <p class="description_info"> Đậu tây, Trứng, Hành lá, Tiêu, Bột nêm, Đường, dầu hào
+                                        </p>
+                                    </div>
+                                    
+                                </div>
+                                <div class="cook_image">
+                                    <img class="recipes_item-main--image" src="./image/mi_xao.jpg" alt="">
+                                </div>
+        
+                            </a>
+                        </li>
+                    </ul>
+        
+                    <nav aria-label="Page navigation example" class="next_page">
+                        <ul class="pagination">
+                          <li class="page-item pre">
+                            <a class="page-link" href="#" aria-label="Previous">
+                              <span aria-hidden="true">&laquo;</span>
+                            </a>
+                          </li>
+                          <li class="page-item active"><a class="page-link " href="?page=1">1</a></li>
+                          <li class="page-item"><a class="page-link" href="?page=2">2</a></li>
+                          <li class="page-item"><a class="page-link" href="?page=3">3</a></li>
+                          <li class="page-item next">
+                            <a class="page-link " href="#" aria-label="Next">
+                              <span aria-hidden="true">&raquo;</span>
+                            </a>
+                          </li>
+                        </ul>
+                      </nav>
                 </div>
-            </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" href="./information2.html">Món của tôi
-                  
-              </a>
-            </li>
-        </ul>
+            </div>
 
-        <div class="recipes">
-            <ul class="recipes_list">
-                <li class="recipes_item">
-                    <a href="#" class="cook_link">
-                        <div class="recipes_item-main">
-                            <div class="recipes_item-main--nick">
-                                <img class="recipes_item-nick--image" src="./image/tudu.jpg" alt="">
-                                <span class="nick_name">Linh cao</span>
-                            </div>
-                            <div class="title">
-                                <h3 class="title_text">Soda dấm táo</h3>
-                            </div>
-                            <div class="time_and_ration">
-                                <span class="time"><i class="fas fa-stopwatch time_icon"></i>
-                                  20 phút
-                              </span>
-                              <span class="ration"><i class="fas fa-user ration_icon"></i>
-                              2</span>
-                            </div>
-                            <div class="description">
-                                <p class="description_info"> Đậu tây, Trứng, Hành lá, Tiêu, Bột nêm, Đường, dầu hào
-                                </p>
-                            </div>
-                            
-                        </div>
-                        <div class="cook_image">
-                            <img class="recipes_item-main--image" src="./image/mi_xao.jpg" alt="">
-                        </div>
-
-                    </a>
-                </li>
-                <li class="recipes_item">
-                    <a href="#" class="cook_link">
-                        <div class="recipes_item-main">
-                            <div class="recipes_item-main--nick">
-                                <img class="recipes_item-nick--image" src="./image/tudu.jpg" alt="">
-                                <span class="nick_name">Linh cao</span>
-                            </div>
-                            <div class="title">
-                                <h3 class="title_text">Soda dấm táo</h3>
-                            </div>
-                            <div class="time_and_ration">
-                                <span class="time"><i class="fas fa-stopwatch time_icon"></i>
-                                  20 phút
-                              </span>
-                              <span class="ration"><i class="fas fa-user ration_icon"></i>
-                              2</span>
-                            </div>
-                            <div class="description">
-                                <p class="description_info"> Đậu tây, Trứng, Hành lá, Tiêu, Bột nêm, Đường, dầu hào
-                                </p>
-                            </div>
-                            
-                        </div>
-                        <div class="cook_image">
-                            <img class="recipes_item-main--image" src="./image/mi_xao.jpg" alt="">
-                        </div>
-
-                    </a>
-                </li>
-                
-                <li class="recipes_item">
-                    <a href="#" class="cook_link">
-                        <div class="recipes_item-main">
-                            <div class="recipes_item-main--nick">
-                                <img class="recipes_item-nick--image" src="./image/tudu.jpg" alt="">
-                                <span class="nick_name">Linh cao</span>
-                            </div>
-                            <div class="title">
-                                <h3 class="title_text">Soda dấm táo</h3>
-                            </div>
-                            <div class="time_and_ration">
-                                <span class="time"><i class="fas fa-stopwatch time_icon"></i>
-                                  20 phút
-                              </span>
-                              <span class="ration"><i class="fas fa-user ration_icon"></i>
-                              2</span>
-                            </div>
-                            <div class="description">
-                                <p class="description_info"> Đậu tây, Trứng, Hành lá, Tiêu, Bột nêm, Đường, dầu hào
-                                </p>
-                            </div>
-                            
-                        </div>
-                        <div class="cook_image">
-                            <img class="recipes_item-main--image" src="./image/mi_xao.jpg" alt="">
-                        </div>
-
-                    </a>
-                </li>
-            </ul>
-
-            <nav aria-label="Page navigation example" class="next_page">
-                <ul class="pagination">
-                  <li class="page-item pre">
-                    <a class="page-link" href="#" aria-label="Previous">
-                      <span aria-hidden="true">&laquo;</span>
-                    </a>
-                  </li>
-                  <li class="page-item active"><a class="page-link " href="?page=1">1</a></li>
-                  <li class="page-item"><a class="page-link" href="?page=2">2</a></li>
-                  <li class="page-item"><a class="page-link" href="?page=3">3</a></li>
-                  <li class="page-item next">
-                    <a class="page-link " href="#" aria-label="Next">
-                      <span aria-hidden="true">&raquo;</span>
-                    </a>
-                  </li>
-                </ul>
-              </nav>
-        </div>
+        >
     </div>
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
