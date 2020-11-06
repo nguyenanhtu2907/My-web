@@ -18,6 +18,10 @@ router.post('/create', postController.createPost);
 
 // router.post('/create', postController.createServer)
 
+router.post('/:slug/add-comment', accountController.restrictLogin, postController.addComment)
+
+router.put('/:slug/delete-comment', accountController.restrictLogin, postController.deleteComment)
+
 router.get('/:slug', postController.detail)
 
 module.exports = router;

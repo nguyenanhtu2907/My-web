@@ -15,12 +15,13 @@
             </button>
         </form>
     </div>
-    <div class="account-options" style="display: flex; margin-top:-13px">
+    <div class="account-options" style="display: flex; margin-top:-13px; font-size: 20px">
+        <a href="/post/create">Đăng bài</a>
         {{#if localIsAuthenticated}}
         <img src="{{localAuthUser.avatar}}" alt="" style="height: 50px; padding-right:10px;">
         <div>
             <h4>Xin chào,{{localAuthUser.fullname}}</h4>
-            <a href="/account/change-password">Đổi mật khẩu</a>
+            <a href="/account/{{localAuthUser._id}}/edit?type=password">Đổi mật khẩu</a>
             /
             <a href="/account/logout">Đăng xuất</a>
         </div>

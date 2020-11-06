@@ -1,0 +1,258 @@
+body{
+    background-color:rgb(252,252,240);
+}
+.containers{
+    position: relative;
+    top: -40px;
+    margin-left: auto;
+    margin-right:auto;
+    width: 700px;
+    background-color: white;
+    align-items: center;
+}
+.comment_link{
+    color: rgb(27, 27, 27);
+    font-weight: 500;
+}
+.comment_link:hover{
+    color: rgb(27, 27, 27);
+    text-decoration: none;
+}
+.recipes_profile{
+    position: absolute;
+    top: 50px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    padding: 0 30px;
+    border-radius: 10px;
+}
+.cook_image{
+    width: 680px;
+    object-fit: cover;
+}
+.name_and_description{
+    margin: 15px;
+}
+.name{
+    font-size: 4rem;
+    color: rgb(74,74,74);
+    line-height: 4rem;
+}
+
+.description{
+    font-size: 1.75rem;
+    color: rgb(119, 119, 118);
+}
+
+.link_user{
+    display: flex;
+    align-items: center;
+    margin: 30px 15px 30px 15px;
+}
+.link_user:hover{
+    
+    text-decoration: none;
+}
+.user_image{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.link_user-nick_name{
+    color: rgb(104, 104, 104);
+    font-size: 2rem;
+    justify-content: center;
+   
+ }
+.time_cook{
+    margin: 10px 0 10px 0;
+    padding: 4px;
+    border: 1px solid;
+    display:flex;
+    border-color: rgb(206,206,205) transparent rgb(206,206,205) transparent;
+ }
+ .time{
+    margin: auto;
+    font-size: 1.75rem;
+    color: rgb(147,146,144);;
+    padding-right: 7px;
+}
+
+.time_icon{
+    font-size: 2rem;
+    color:rgb(147,146,144);
+    padding: 15px;
+    
+}
+
+.material_title{
+    color: rgb(74,74,74);
+    font-size: 2.5rem;
+}
+
+.ration
+{
+    font-size: 1.5rem;
+    color: rgb(147,146,144);
+    /* padding-left: 10px; */
+    
+}
+
+.ration_icon{
+    font-size: 1.5rem;
+    color:rgb(147,146,144);
+    padding-right: 10px;
+}
+.material_list{
+    margin: 10px 0 10px 0;
+    padding-left: 0;
+    list-style: none;
+}
+.material_items{
+    font-size: 2rem;
+    color: rgb(74,74,74);
+}
+
+.material_list hr{
+    margin-left: 10px;
+    margin-right:10px;
+    
+}
+
+.step_title{
+    color: rgb(74,74,74);
+    font-size: 2.5rem;
+}
+
+.step_item{
+    /* display: grid; */
+    padding-bottom:25px ;
+
+}
+
+.step_list{
+    list-style: none;
+    }
+
+.icon_step{
+    font-size: 1.5rem;
+    margin-left:-20px;
+    margin-right: 10px;
+}
+.step_description{
+    font-size: 1.75rem;
+    font-weight: 400;
+    
+
+}
+.step_description:before{
+    content: "";
+
+    
+}
+.step_img{
+    width: 160px;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.comment{
+    width: 600px;
+    margin: auto;   
+     /* border: 1px solid rgb(74,74,74); */
+    border-radius: 10px;
+    padding: 10px;
+    
+}
+.comment_title{
+    font-size: 2.5rem;
+    color: rgb(74,74,74);
+}
+.comment_main{
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+}
+.input{
+    flex:1
+}
+.comment_list{
+
+    list-style: none;
+    padding-left:0 ;
+}
+
+.comment_item{
+    display: flex;
+    padding-left: 0;
+    margin-bottom: 10px;
+}
+
+.comment_text{
+    flex: 1;
+    padding-top: 4px ;
+    font-size: 1.5rem;
+    color: rgb(74,74,74);
+
+}
+.delete_comment{
+    color: rgb(74,74,74);
+    font-size: 1.5rem;
+    margin: auto;
+    cursor: pointer;
+}
+.user_img{
+    align-items: center;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    margin-right: 5px;
+    /* margin-top: 8px; */
+}
+.comment_input{
+    flex:1;
+    padding:5px;
+    height: 100%;
+    border-radius: 10px;
+    border:none;
+    outline: none;
+    font-size:1.5rem;
+}
+
+.input{
+    display: flex;
+    height: 35px;
+    margin-top: 8px;
+    width: 400px;
+    border-radius: 10px;
+    border: 1px solid rgb(74,74,74);    
+}
+.btn1{
+    background-color:rgb(245, 223, 223);
+    border: none;
+    outline:none;
+    font-size: 1.6rem;
+    border-radius: 0 10px 10px 0;
+}
+
+/* .btn1:hover{
+    background-color:rgb(255,153,51);
+} */
+.more-post{
+    position: absolute;
+    width: 112%;
+    margin-left: 8px;
+    margin-bottom: 20px;
+    padding-right: 50px;
+}
+.posts{
+    display: flex;
+    justify-content: space-between;
+}
+.more-post .card{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+a{
+    color: rgb(53, 53, 53);
+}
+
