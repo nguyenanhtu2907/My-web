@@ -39,7 +39,7 @@ body{
 }
 
 .description{
-    font-size: 1.5rem;
+    font-size: 1.75rem;
     color: rgb(119, 119, 118);
 }
 
@@ -73,13 +73,13 @@ body{
  }
  .time{
     margin: auto;
-    font-size: 1.5rem;
+    font-size: 1.75rem;
     color: rgb(147,146,144);;
     padding-right: 7px;
 }
 
 .time_icon{
-    font-size: 1.5rem;
+    font-size: 2rem;
     color:rgb(147,146,144);
     padding: 15px;
     
@@ -109,7 +109,7 @@ body{
     list-style: none;
 }
 .material_items{
-    font-size: 1.5rem;
+    font-size: 2rem;
     color: rgb(74,74,74);
 }
 
@@ -140,7 +140,7 @@ body{
     margin-right: 10px;
 }
 .step_description{
-    font-size: 1.5rem;
+    font-size: 1.75rem;
     font-weight: 400;
     
 

@@ -39,18 +39,20 @@
                 </div>
                 <span class="link_user-nick_name"><span>{{post.authorName}}</span></span>
             </a>
-
+            <p class="ration">Đăng ngày: {{post.date}}</p>
             <div class="time_cook">
-
+            {{#if post.timecook}}
                 <span class="time"><i class="fas fa-stopwatch time_icon"></i>
                     {{post.timecook}} phút
                 </span>
+            {{/if}}
             </div>
             <div class="material">
                 <h3 class="material_title"> Nguyên Liệu </h3>
+                {{#if post.ration}}
                 <span class="ration">
                     <i class="fas fa-user ration_icon"></i>
-                    {{post.ration}} phần ăn </span>
+                    {{post.ration}} phần ăn </span>{{/if}}
                 <ul class="material_list">
                     {{#each post.ingredients}}
                     <li class="material_items">
@@ -66,6 +68,7 @@
                 </h3>
                 <ul class="step_list">
                     {{#each post.steps}}
+                    {{#if this.text}}
                     <li class="step_item">
                         <span class="step_description">
                             <i class="fas fa-heart icon_step "></i> {{this.text}}
@@ -73,6 +76,7 @@
                         <br>
                         <img class="step_img" src="{{this.img}}" alt="">
                     </li>
+                    {{/if}}
                     {{/each}}
                 </ul>
 

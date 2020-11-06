@@ -72,20 +72,66 @@ class AccountController {
             res.redirect(url)
         })
     }
+    // profile(req, res, next) {
+    //     User.findOne({ _id: req.params.id })
+    //         .then(user => {        
+    //             let number = 0;
+    //             Post.count({ author: userTarget._id }, function (err, num) {
+    //                 if (num) {
+    //                     number = num
+    //                 }
+    //             })
+    //             Post.find({ author: req.params.id }).limit(10).skip(req.query.page * 10 || 0).sort({ 'createdAt': -1 })
+    //                 .then(posts => multipleMongooseToObj(posts))
+    //                 .then(posts => getPostsInfo(posts))
+    //                 .then(posts => {
+    //                     return res.render('profile', {
+    //                         layout: false,
+    //                         userTarget: mongooseToObj(user),
+    //                         posts,
+    //                         countPost: number,
+    //                         page: (number > 10 ? Math.ceil(number / 10) : 1),
+    //                         showPage: number > 10 ? 1 : 0,
+    //                         login: req.session.authUser,
+    //                         query: (req.query.tab === 'saved' ? 1 : 0)
+    //                     })
+    //                 })
+    //                 .catch(() => { })
+    //         })
+    //         .catch(() => res.render('error404',{
+    //             layout:false
+    //         }))
+    // }
     profile(req, res, next) {
         var error = '';
         var userTarget;
         User.findOne({ _id: req.params.id }, function (err, user) {
             if (!user) {
-                error = "Nguoi dung khong ton tai";
+                return res.render('error404', {
+                    layout: false
+                })
             } else {
                 userTarget = user;
+                let number = 0;
+                Post.count({ author: userTarget._id }, function (err, num) {
+                    if (num) {
+                        number = num
+                    }
+                })
                 Post.find({ author: req.params.id }).limit(10).skip(req.query.page * 10 || 0).sort({ 'createdAt': -1 })
                     .then(posts => multipleMongooseToObj(posts))
                     .then(posts => getPostsInfo(posts))
                     .then(posts => {
                         if (userTarget) {
-                            res.json({ userTarget, posts, countPost: posts.length })
+                            return res.render('profile', {
+                                layout: false,
+                                userTarget: mongooseToObj(userTarget),
+                                posts,
+                                countPost: number,
+                                page: (number > 10 ? Math.ceil(number / 10) : 1),
+                                showPage: number > 10 ? 1 : 0,
+                                query: (req.query.tab === 'saved' ? 1 : 0)
+                            })
                         } else {
                             return res.render('error404', {
                                 layout: false
@@ -94,16 +140,12 @@ class AccountController {
                     }) //render profile page
                     .catch(() => { res.send(error) }) //reder error
             }
-            //    return res.render('profile',{
-            //        user: mongooseToObj(user),
-            //        postsByUsername,
-            //    })
-
-            // res.json({ user, postsByUsername, error });
         })
-
     }
-    //link: /post/:id/nav?page=... fetch data 
+
+
+
+    //link: /account/:id/nav?page=... fetch data 
     profileNav(req, res, next) {
         Post.find({ author: req.params.id }).limit(10).skip(req.query.page * 10 || 0).sort({ 'createdAt': -1 })
             .then(posts => multipleMongooseToObj(posts))
@@ -142,29 +184,33 @@ class AccountController {
     editInformationPut(req, res, next) {
         User.findOne({ _id: req.params.id }, function (err, user) {
             user.fullname = req.body.fullname;
+            if(req.body.avatar){
+                user.avatar=req.body.avatar;
+            }
             user.email = req.body.email;
             user.gender = req.body.gender;
-            user.user_description = req.body.user_description;
+            if(req.body.user_description){
+                user.user_description = req.body.user_description;
+            }
+            req.session.authUser=user;
             user.save()
                 .then(() => res.json({
-                    message: '*Đổi mật khẩu thành công!!!',
+                    message: '*Thay đổi thành công!!!',
                     user: user,
+                    res: 1,
                 }))
-                .catch(error => { })
+                .catch(error => res.render('error404', {
+                    layout: false,
+                }))
         })
     }
 
-    // changePassword(req, res, next) {
-    //     User.findById(req.session.authUser)
-    //         .then(user => res.render('changePassword', {
-    //             user: mongooseToObj(user),
-    //         }))
-    // }
     //cap nhat mat khau
     editPasswordPut(req, res, next) {
         // User.updateOne({_id: req.params.id})
+        console.log(req.params.id)
         User.findOne({ _id: req.params.id }, function (err, user) {
-            const rs = bcrypt.compareSync(req.body.opassword, user.password_hash);
+            const rs = bcrypt.compareSync(req.body.password, user.password_hash);
             if (!rs) {
                 // return 
                 // res.render('editProfile', 
@@ -177,7 +223,7 @@ class AccountController {
                 })
                 // )
             }
-            const password_hash = bcrypt.hashSync(req.body.password, 8);
+            const password_hash = bcrypt.hashSync(req.body.new_password, 8);
             user.password_hash = password_hash;
 
             user.save()
@@ -219,6 +265,11 @@ async function getPostsInfo(posts) {
         var user = await User.findOne({ _id: post.author });
         post.authorName = user.fullname;
         post.authorAvatar = user.avatar;
+        let date_ob = post.updatedAt;
+        let date = ("0" + date_ob.getDate()).slice(-2);
+        let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
+        let year = date_ob.getFullYear();
+        post.date = date + '/' + month + '/' + year;
     }
     return posts
 }

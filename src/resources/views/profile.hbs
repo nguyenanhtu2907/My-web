@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/profile.css">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/font/css/all.css">
+    <link rel="stylesheet" href="/css/raw.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    {{>header}}
+    <div class="background">
+        <img src="{{userTarget.avatar}}" alt="">
+    </div>
+    <div class="containers">
+        <div class="avatar">
+            <div class="avatar_main">
+                <div class="containerimg">
+                    <img class="avatar_label" src="{{userTarget.avatar}}" alt="">
+
+                </div>
+                <div class="name">
+                    {{userTarget.fullname}}
+                </div>
+            </div>
+            <div class="country">
+                <span class="introduce">
+                    {{userTarget.user_description}}
+                </span>
+            </div>
+        </div>
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link {{#if query}}''{{else}}active{{/if}}" id="posted-tab" data-toggle="tab"
+                    href="#my-posts" role="tab" aria-controls="home" aria-selected="true">Các bài đăng</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{#if query}}active{{/if}} {{#ifCond localAuthUser._id userTarget._id}} '' {{else}} disabled{{/ifCond}}"
+                    id="saved-tab" data-toggle="tab" href="#saved-posts" role="tab" aria-controls="profile"
+                    aria-selected="false">Bài viết đã lưu</a>
+            </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show {{#if query}}''{{else}}active{{/if}}" id="my-posts" role="tabpanel"
+                aria-labelledby="home-tab">
+                <div class="recipes">
+                    <h3 class="total-post"> {{countPost}} Bài viết</h3>
+                    <ul class="recipes_list">
+                        {{#each posts}}
+                        <li class="recipes_item">
+                            <div class="cook_link">
+                                <div class="recipes_item-main">
+                                    <a href="/account/{{this.author}}" class="link">
+                                        <div class="containerimgpost">
+                                            <img class="recipes_item-nick--image" src="{{this.authorAvatar}}" alt="">
+                                        </div>
+                                        <span class="nick_name">{{this.authorName}}</span>
+                                    </a>
+                                    <a href="/post/{{this.slug}}" class="title link">
+                                        <h3 class="title_text">{{this.title}}</h3>
+                                    </a>
+                                    <div class="time_and_ration">
+                                        {{#if this.timecook}}
+                                        <span class="time"><i class="fas fa-stopwatch time_icon"></i>
+                                            {{this.timecook}}
+                                        </span>
+                                        {{/if}}
+                                        {{#if this.ration}}
+                                        <span class="ration"><i class="fas fa-user ration_icon"></i>
+                                            {{this.ration}}</span>
+                                        {{/if}}
+                                    </div>
+                                    <div class="description">
+                                        <p class="description_info"> {{#each this.ingredients}}{{this}}, {{/each}}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="cook_image">
+                                    <img class="recipes_item-main--image" src="{{this.thumbnail}}" alt="">
+                                </div>
+                            </div>
+                        </li>
+                        {{/each}}
+                    </ul>
+
+                    {{#if showPage}}
+                    <nav aria-label="page navigation example" class="next_page">
+                        <ul class="pagination">
+                            <li class="page-item disabled" id="1"><a class="page-link" href="#"
+                                    onclick="routePage(event)" aria-label="Previous"><span
+                                        aria-hidden="true">&laquo;</span> Trang đầu</a></li>
+                            <li class="page-item num active" id="pre"><a class="page-link" onclick="routePage(event)"
+                                    href="?page=1">1</a></li>
+                            <li class="page-item num " id="current"><a class="page-link" onclick="routePage(event)"
+                                    href="?page=2">2</a></li>
+                            <li class="page-item num {{#ifCond page 1}} disabled{{/ifCond}}{{#ifCond page 2}} disabled{{/ifCond}}"
+                                id="next"><a class="page-link" onclick="routePage(event)" href="?page=3">3</a></li>
+                            <li class="page-item last {{#ifCond page 1}} disabled{{/ifCond}}{{#ifCond page 2}} disabled{{/ifCond}}"
+                                id="{{page}}">
+                                <a class="page-link " onclick="routePage(event)" href="#" aria-label="Next">
+                                    Trang cuối <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    {{/if}}
+                </div>
+            </div>
+
+            <div class="tab-pane fade show {{#if query}}active{{/if}}" id="saved-posts" role="tabpanel"
+                aria-labelledby="profile-tab">
+                <div class="recipes login-plz">
+                    <p style="margin-top: 100px;">Bạn chưa lưu bài viết nào!!!</p>
+                    <ul class="recipes_list">
+                    </ul>
+                    {{!-- {{#if page}} --}}
+                    {{!-- <nav aria-label="Page navigation example" class="next_page">
+                        <ul class="pagination">
+                            <li class="page-item pre">
+                                <a class="page-link" href="#" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span> Trước
+                                </a>
+                            </li>
+                            <li class="page-item active"><a class="page-link " href="?page=1">1</a></li>
+                            <li class="page-item"><a class="page-link" href="?page=2">2</a></li>
+                            <li class="page-item"><a class="page-link" href="?page=3">3</a></li>
+                            <li class="page-item next">
+                                <a class="page-link " href="#" aria-label="Next">
+                                    Tiếp theo <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav> --}}
+                    {{!-- {{/if}} --}}
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="/javascripts/profile.js"> </script>
+</body>
+
+</html>

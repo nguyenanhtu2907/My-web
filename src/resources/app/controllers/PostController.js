@@ -46,51 +46,51 @@ class PostController {
             .then(post => mongooseToObj(post))
             .then(post => getPostInfo(post))
             .then(function (post) {
-                let num = Post.count({author: post.author}, function(err, num){
-                    if(num){
+                let num = Post.count({ author: post.author }, function (err, num) {
+                    if (num) {
                         return num;
                     }
                     return err;
                 })
-                Post.find({ author: post.author }).limit(3).skip(Math.random(num-2)).sort({ 'createdAt': -1 })
+                Post.find({ author: post.author }).limit(3).skip(Math.random(num - 2)).sort({ 'createdAt': -1 })
                     .then(morePosts => multipleMongooseToObj(morePosts))
                     .then(morePosts => getPostsInfo(morePosts))
-                    .then(morePosts => res.render('postDetail',{
+                    .then(morePosts => res.render('postDetail', {
                         post,
                         comments: post.comments,
                         morePosts,
                         user: req.session.authUser,
-                        layout:false,
+                        layout: false,
                     }))
-                    .catch(() => {}) 
+                    .catch(() => { })
             })
-            .catch(() => res.render('error404',{
-                layout:false
+            .catch(() => res.render('error404', {
+                layout: false
             }))
     }
-    
-    addComment(req, res, next){
+
+    addComment(req, res, next) {
         var comment = {
             authorName: req.session.authUser.fullname,
             authorId: req.session.authUser._id,
             authorAvatar: req.session.authUser.avatar,
             content: req.body.content,
         }
-        Post.findOne({slug: req.params.slug})
-            .then(post=> {
+        Post.findOne({ slug: req.params.slug })
+            .then(post => {
                 post.comments.push(comment);
                 post.save()
-                .then(()=>res.json(post.comments))
-                .catch(()=>{})
+                    .then(() => res.json(post.comments))
+                    .catch(() => { })
             })
     }
-    deleteComment(req, res, next){
-        Post.findOne({slug: req.params.slug})
-            .then(post=> {
+    deleteComment(req, res, next) {
+        Post.findOne({ slug: req.params.slug })
+            .then(post => {
                 post.comments.pop();
                 post.save()
-                .then(()=>res.json(post.comments))
-                .catch(()=>{})
+                    .then(() => res.json(post.comments))
+                    .catch(() => { })
             })
     }
 
@@ -101,6 +101,11 @@ async function getPostInfo(post) {
     var user = await User.findOne({ _id: post.author });
     post.authorName = user.fullname;
     post.authorAvatar = user.avatar;
+    let date_ob = post.updatedAt;
+    let date = ("0" + date_ob.getDate()).slice(-2);
+    let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
+    let year = date_ob.getFullYear();
+    post.date = date + '/' + month + '/' + year;
     return post
 }
 async function getPostsInfo(posts) {
@@ -108,6 +113,11 @@ async function getPostsInfo(posts) {
         var user = await User.findOne({ _id: post.author });
         post.authorName = user.fullname;
         post.authorAvatar = user.avatar;
+        let date_ob = post.updatedAt;
+        let date = ("0" + date_ob.getDate()).slice(-2);
+        let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
+        let year = date_ob.getFullYear();
+        post.date = date + '/' + month + '/' + year;
     }
     return posts
 }
