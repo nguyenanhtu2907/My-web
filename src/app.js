@@ -52,4 +52,4 @@ app.set('views', path.join(__dirname, 'resources/views'))
 route(app);
 
 
-http.listen(process.env.PORT || 3000);
+http.listen(process.env.PORT || port);
