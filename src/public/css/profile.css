@@ -2,18 +2,19 @@ body{
     background-color:rgb(252,252,240);
 }
 .background{
-    width: 100%;
     height: 120px;
-    background-color:rgb(212,212,209);
-    
-
+    overflow: hidden;
 }
-
+.background img{
+    margin-top: -200px;
+    width: 100%;
+    background-color:rgb(233, 233, 233);
+}
 .containers{
     margin-left: auto;
     margin-right:auto;
     max-width: 700px;
-  
+    z-index: 1;
 }
  .avatar{
     display: block;
@@ -32,16 +33,16 @@ body{
 input[type="file"]{
     display:none;
 }
-.avatar_label{
-    
+.containerimg{
+    border-radius: 50%;
     width: 150px;
     height: 150px;
-
-    background-color: aqua;
-    justify-content: center;
-    text-align: center;
-    border-radius: 50%;
-    
+    overflow: hidden;
+    margin: auto;
+    background-color: #ebebeb00;
+}
+.avatar_label{
+    width: 150px;
 }
 
 label.image{
@@ -59,6 +60,8 @@ label.image img{
     text-align: center;
     align-items: center;
     margin: auto;
+    margin-top: 1rem;
+    font-size: 3rem;
 }
 .country{
     max-width: 400px;
@@ -69,9 +72,10 @@ label.image img{
 
 .introduce  {
     min-width: 100px;
-    font-size: 1.5rem;
-    text-align: center;    
+    font-size: 1.75rem;
+    margin: auto;   
     padding-right: 5px;
+    margin-top: 3rem;
 }
 
 .country_input{
@@ -107,10 +111,9 @@ label.image img{
 } */
 .recipes_list{
     position: relative;
-    margin-top: 80px;
+    margin-top: 50px;
     padding-left: 0;
     list-style: none;
-    
 }
 .recipes_item{
     padding: 8px;
@@ -127,35 +130,37 @@ label.image img{
 }
 .cook_link{
     display: flex;
-    
     justify-content: center;
     justify-content: space-between;
+}
+.link:hover{
     text-decoration: none;
 }
-.cook_link:hover{
-    text-decoration: none;
-}
+/* .recipes_item-main{
 }
 .recipes_item-main--nick{
-    text-decoration: none;
     
+    
+} */
+.containerimgpost{
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+    display: inline-block;
+    background-color: #ebebeb00;
 }
-
 .recipes_item-nick--image{
     width: 40px;
-    border-radius: 50%;
 }
 .nick_name{
+    position: relative;
+    top: -1.2rem;
     font-size: 1.8rem;
-    color: rgb(147,146,144);
-    
+    color: rgb(147,146,144);    
 }
-.title{
-    cursor: pointer;
-}
-
-.title:hover{
-    text-decoration: none;
+.nick_name:hover{
+    text-decoration: none; 
 }
 .title_text{
     font-size: 3rem;
@@ -207,4 +212,15 @@ label.image img{
 
 .pagination{
     margin: auto;
+}
+.total-post{
+    position: relative;
+    top: 20px;
+}
+.login-plz{
+    text-align: center;
+    font-size: 2rem;
+}
+.none{
+    display: none;
 }

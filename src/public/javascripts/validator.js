@@ -1,5 +1,5 @@
 function Validator(object) {
-
+    // console.log(document.querySelector('.form-group').querySelector(object.formMessage))
     var selectorRules = {};
     function getParent(element, selector) {
         while (element.parentElement) {
@@ -30,9 +30,9 @@ function Validator(object) {
         } else {
             getParent(inputElement, object.formGroupSelector).querySelector(object.formMessage).innerText = '';
         }
-        if(getParent(inputElement, object.formGroupSelector).querySelector(object.formMessage).innerText){
+        if (getParent(inputElement, object.formGroupSelector).querySelector(object.formMessage).innerText) {
             getParent(inputElement, object.formGroupSelector).classList.add('invalid');
-        }else{
+        } else {
             getParent(inputElement, object.formGroupSelector).classList.remove('invalid');
         }
         return !messageValidate;
@@ -58,13 +58,13 @@ function Validator(object) {
                     var formInputs = Array.from(enableInputs).reduce(function (values, input) {
                         switch (input.type) {
                             case 'checkbox':
-                                if(!input.matches(':checked'))return values;
-                                if(!Array.isArray(values[input.name])){
-                                    values[input.name]=[];
+                                if (!input.matches(':checked')) return values;
+                                if (!Array.isArray(values[input.name])) {
+                                    values[input.name] = [];
                                 }
                                 values[input.name].push(input.value);
                                 break;
-                        
+
                             case 'radio':
                                 values[input.name] = formElement.querySelector('input[name="' + input.name + '"]:checked').value;
                                 break;

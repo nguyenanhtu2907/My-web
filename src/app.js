@@ -11,6 +11,7 @@ const db = require('./resources/config/db');
 db.connect();
 const app = express();
 const port = 3000;
+const http = require("http").Server(app);
 
 app.use(methodOverride('_method'));
 
@@ -19,33 +20,38 @@ app.use(session({
     secret: 'keyboard cat',
     resave: false,
     saveUninitialized: true,
-    cookie: { 
+    cookie: {
         // secure: true 
-    }    
-}))    
+    }
+}))
 
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(morgan('combined'));
 //Template engine
-
 app.engine('hbs', handlebars({
     extname: '.hbs',
-}));    
+}));
+app.set('view engine', 'hbs');
+handlebars.create({}).handlebars.registerHelper('ifCond', function (v1, v2, options) {
+    if (v1 == v2) {
+        return options.fn(this);
+    }
+    return options.inverse(this);
+});
 
 app.use(express.urlencoded({
     limit: '50mb', extended: true
-}));    
-app.use(express.json({limit: '50mb', extended: true}));
+}));
+app.use(express.json({ limit: '50mb', extended: true }));
 
 
-app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'resources/views'))
 
 
 route(app);
 
 
-app.listen(port, () => {
+http.listen(port, () => {
     console.log(`http://localhost:${port}`);
 })

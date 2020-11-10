@@ -3,6 +3,7 @@ const User = require('../models/User')
 const Post = require('../models/Post');
 const { mongooseToObj, multipleMongooseToObj } = require('../util/mongooseToObj');
 const { post } = require('../routes/post');
+const e = require('express');
 
 class PostController {
     create(req, res, next) {
@@ -25,6 +26,7 @@ class PostController {
         const entity = {
             title: req.body.title,
             author: req.body.author,
+            timecook: req.body.timecook,
             thumbnail: req.body.thumbnail,
             ration: req.body.ration,
             postdescription: req.body.postdescription,
@@ -44,56 +46,53 @@ class PostController {
             .then(post => mongooseToObj(post))
             .then(post => getPostInfo(post))
             .then(function (post) {
-                Post.find({ author: post.author }).limit(2).sort({ 'createdAt': -1 })
-                    .then(posts => multipleMongooseToObj(posts))
-                    .then(posts => res.json(post))
-                    .catch(() => { }) 
+                let num = Post.count({ author: post.author }, function (err, num) {
+                    if (num) {
+                        return num;
+                    }
+                    return err;
+                })
+                Post.find({ author: post.author }).limit(3).skip(Math.random(num - 2)).sort({ 'createdAt': -1 })
+                    .then(morePosts => multipleMongooseToObj(morePosts))
+                    .then(morePosts => getPostsInfo(morePosts))
+                    .then(morePosts => res.render('postDetail', {
+                        post,
+                        comments: post.comments,
+                        morePosts,
+                        user: req.session.authUser,
+                        layout: false,
+                    }))
+                    .catch(() => { })
             })
-            .catch(() => { })
-
-
-
+            .catch(() => res.render('error404', {
+                layout: false
+            }))
     }
-    // login(req, res, next) {
-    //     res.render('login', {
-    //         layout: false,
-    //     });
-    // }
-    // loginServer(req, res, next) {
-    //     User.findOne({ username: req.body.username }, function (err, user) {
-    //         if (user) {
-    //             const rs = bcrypt.compareSync(req.body.password, user.password_hash);
-    //             if (!rs) {
-    //                 return res.render('login', {
-    //                     layout: false,
-    //                     message: 'Tên đăng nhập hoặc mật khẩu không đúng!',
-    //                 })
-    //             } 
-    //         } else {
-    //             return res.render('login', {
-    //                 layout: false,
-    //                 message: 'Tên đăng nhập hoặc mật khẩu không đúng!',
-    //             })
-    //         }
 
-    //         delete user.password_hash;
-    //         req.session.isAuthenticated = true;
-    //         req.session.authUser = user;
-
-    //         res.redirect('/account/profile')
-    //     })
-    // }
-
-    // retrict(req, res, next) {
-    //     if(!req.session.isAuthenticated){
-    //         return res.redirect('/account/login')
-    //     }
-    //     next()
-    // }
-
-    // profile(req, res, next){
-    //     res.json(req.session.authUser)
-    // }
+    addComment(req, res, next) {
+        var comment = {
+            authorName: req.session.authUser.fullname,
+            authorId: req.session.authUser._id,
+            authorAvatar: req.session.authUser.avatar,
+            content: req.body.content,
+        }
+        Post.findOne({ slug: req.params.slug })
+            .then(post => {
+                post.comments.push(comment);
+                post.save()
+                    .then(() => res.json(post.comments))
+                    .catch(() => { })
+            })
+    }
+    deleteComment(req, res, next) {
+        Post.findOne({ slug: req.params.slug })
+            .then(post => {
+                post.comments.pop();
+                post.save()
+                    .then(() => res.json(post.comments))
+                    .catch(() => { })
+            })
+    }
 
 
 }
@@ -102,6 +101,11 @@ async function getPostInfo(post) {
     var user = await User.findOne({ _id: post.author });
     post.authorName = user.fullname;
     post.authorAvatar = user.avatar;
+    let date_ob = post.updatedAt;
+    let date = ("0" + date_ob.getDate()).slice(-2);
+    let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
+    let year = date_ob.getFullYear();
+    post.date = date + '/' + month + '/' + year;
     return post
 }
 async function getPostsInfo(posts) {
@@ -109,6 +113,11 @@ async function getPostsInfo(posts) {
         var user = await User.findOne({ _id: post.author });
         post.authorName = user.fullname;
         post.authorAvatar = user.avatar;
+        let date_ob = post.updatedAt;
+        let date = ("0" + date_ob.getDate()).slice(-2);
+        let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
+        let year = date_ob.getFullYear();
+        post.date = date + '/' + month + '/' + year;
     }
     return posts
 }
