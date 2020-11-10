@@ -2,6 +2,7 @@
     position: relative;
     width: 1000px;
     margin: auto;
+    font-family: roboto;
 }
 
 
@@ -56,7 +57,7 @@
     cursor: pointer;
 }
 .grid {
-    margin-top: 50px;
+    margin-top: 0px;
     display: grid;
     grid-gap: 15px;
     grid-template-columns: repeat(auto-fill, minmax(235px,1fr));
@@ -76,9 +77,13 @@ body {
     background-color: rgb(255,153,51);
 }
 .nav-pills{
-    margin-top: 15px;
+    margin-top: 80px;
+    font-size: 1.5rem;
 }
-  
+.disabled{
+    pointer-events: none;
+    cursor: default;
+}
 .item {
     background-color: #ffffff;
     width: 235px;
@@ -138,6 +143,12 @@ body {
 .desc p{
     margin-bottom: 10px;
     font-size: 1.3rem;
-    font-family: roboto;
+    font-family: Roboto;
+    line-height: 1.8rem;
+}
+
+.desc h3{
+    font-weight: 600;
+    font-size:2rem;
 }
   

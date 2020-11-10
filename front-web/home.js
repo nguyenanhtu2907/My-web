@@ -26,26 +26,26 @@ function resizeGridItem(item){
     imagesLoaded( allItems[x], resizeInstance);
   }
 
-  var selected = document.getElementsByClassName("nav-link");
-//   selected[0].onclick = function (e) { 
-//     window.onload = resizeAllGridItems();
+  // var selected = document.getElementsByClassName("nav-link");
+  // selected[0].onclick = function (e) { 
+  //   window.onload = resizeAllGridItems();
 
-//     window.addEventListener("resize", resizeAllGridItems);
+  //   window.addEventListener("resize", resizeAllGridItems);
 
-//     for(x=0;x<allItems.length;x++){
-//         imagesLoaded( allItems[x], resizeInstance);
-//     }
-//   };
+  //   for(x=0;x<allItems.length;x++){
+  //       imagesLoaded( allItems[x], resizeInstance);
+  //   }
+  // };
 
-    selected[1].onclick = function (e) { 
-        window.onload = resizeAllGridItems();
+    // selected[1].onclick = function (e) { 
+    //     window.onload = resizeAllGridItems();
     
-        window.addEventListener("resize", resizeAllGridItems);
+    //     window.addEventListener("resize", resizeAllGridItems);
     
-        for(x=0;x<allItems.length;x++){
-            imagesLoaded( allItems[x], resizeInstance);
-        }
-      };
+    //     for(x=0;x<allItems.length;x++){
+    //         imagesLoaded( allItems[x], resizeInstance);
+    //     }
+    //   };
 
       
   
