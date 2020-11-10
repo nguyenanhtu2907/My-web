@@ -1,0 +1,143 @@
+.containers{
+    position: relative;
+    width: 1000px;
+    margin: auto;
+}
+
+
+
+.search--logo{
+    width: 70px ;
+    justify-content: center;
+    margin: auto;
+}
+
+.logo{
+     width: 50px;
+     
+     
+ }
+
+.input_search{
+    display: flex;
+    margin: auto;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.2);  
+
+    /* position: relative; */
+    height: 40px;
+    margin-top: 8px;
+    width: 400px;
+    border-radius: 10px;
+    
+    
+
+    }
+
+.search--input{
+    flex:1;
+    padding:5px;
+    font-size: 1.5rem;
+    height: 100%;
+    border-radius: 10px;
+    border:none;
+    outline: none;
+}
+
+.search--btn{
+    margin: 4px;
+    background-color:rgb(255,153,51);
+    border: none;
+    /* outline:none; */
+    font-size: 1.5rem;
+    border-radius: 8px;
+}
+.search--btn:hover{
+    outline: none;
+    cursor: pointer;
+}
+.grid {
+    margin-top: 50px;
+    display: grid;
+    grid-gap: 15px;
+    grid-template-columns: repeat(auto-fill, minmax(235px,1fr));
+    grid-auto-rows: 20px;
+}
+  
+  
+body {
+    
+    margin: 15px;  
+    color: #374046;
+    text-rendering: optimizeLegibility; 
+    -webkit-font-smoothing: antialiased;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link{
+    background-color: rgb(255,153,51);
+}
+.nav-pills{
+    margin-top: 15px;
+}
+  
+.item {
+    background-color: #ffffff;
+    width: 235px;
+}
+.link_user {
+    padding: 15px 15px 9px 3px;
+}
+.user_image{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+
+}
+.user_name{
+    font-family: roboto;
+    font-size: 1.6rem;
+    font-weight: 500;
+    text-decoration: none;
+    color: rgb(74,74,74);
+}
+
+.user:hover{
+    text-decoration: none;
+}
+
+.box_desc{
+    box-shadow: 0 1px 5px rgba(0,0,0,0.2);  
+    border-radius: 10px;
+    
+
+}
+.photothumb{
+    border-radius: 10px 10px 0px 0px;
+    /* height: 100%; */
+    object-fit: fill;
+    width: 100%;
+
+}
+  
+
+  
+.title h3{
+    font-size: 1.2em;
+    text-transform: uppercase;
+}
+
+.desc{
+    padding: 10px 10px 5px 10px;
+}
+  
+.desc img{
+    width: 100%;
+
+    /* float: left; */
+}
+  
+.desc p{
+    margin-bottom: 10px;
+    font-size: 1.3rem;
+    font-family: roboto;
+}
+  

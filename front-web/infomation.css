@@ -135,13 +135,13 @@ label.image img{
 .cook_link:hover{
     text-decoration: none;
 }
-/* .recipes_item-main{
+.recipes_item-main{
 
 }
 .recipes_item-main--nick{
+    text-decoration: none;
     
-    
-} */
+}
 
 .recipes_item-nick--image{
     width: 40px;
@@ -151,6 +151,13 @@ label.image img{
     font-size: 1.8rem;
     color: rgb(147,146,144);
     
+}
+.title{
+    cursor: pointer;
+}
+
+.title:hover{
+    text-decoration: none;
 }
 .title_text{
     font-size: 3rem;
