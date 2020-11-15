@@ -1,14 +1,15 @@
 .containers{
-    position: relative;
+    
     width: 1000px;
     margin: auto;
     font-family: roboto;
+    margin-top: 80px ;
 }
 
 
 
 .search--logo{
-    width: 70px ;
+    width: 70px;
     justify-content: center;
     margin: auto;
 }

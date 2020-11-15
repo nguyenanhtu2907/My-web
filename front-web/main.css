@@ -1,9 +1,17 @@
+.cookpad{
+    
+}
 .header{
     height: 57px;
     width: 100%;
     box-shadow: 0px 0px 1px black;
     position: fixed;
+    top: 0;
+    left: 0;
+    background-color: white;
     z-index: 1;
+    /* border: solid 1px black; */
+    padding-left: 10px;
 }
 
 .header_navbar{
@@ -12,6 +20,7 @@
 }
 .header_navbar-list{
     margin-top: auto;
+    margin-right: 10px;
     padding-left: 0px;
     list-style: none;
 }
@@ -53,7 +62,7 @@
 }
 
 .dropdown {
-    position: absolute;
+    /* position: absolute; */
   }
 
 .dropdown-content {
