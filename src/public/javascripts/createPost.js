@@ -1,98 +1,80 @@
-var material = document.getElementsByClassName('material_list')[0];
 $(document).ready(function () {
-  $(".add_material").click(function (e) {
-    e.preventDefault();
-    $("ul.material_list").append(material.firstElementChild.innerHTML);
+  //append
+  $(".add_material").click(function (event) {
+    event.preventDefault();
+    var material_html = `
+    <li class="material_item"><input type="text" class="material_input" placeholder="250g bột"
+    name="ingredients">
+      <button class="material_delete_icon"><i class="fas fa-times delete_icon"></i></button>
+    </li>
+    `
+    $("ul.material_list").append(material_html);
   });
-  $(this).on("click", ".material_delete_icon", function (e) {
-    e.preventDefault();
-    var target = $(this).parent();
+  //xóa
+  $(this).on("click", ".material_delete_icon", function (event) {
+    event.preventDefault();
+    var target = $(this).parent().parent();
     target.remove();
   });
 });
 
-var step = document.getElementsByClassName('step_list')[0];
-var index = 1;
+
+// append và xóa các bước nấu ăn
 $(document).ready(function () {
-  $(".add_step").click(function (e) {
-    e.preventDefault();
-    var stepAppended = `
-    <li class="step_item">
-        <div class="step_item-in">
-            <button class="step_delete_icon"><i class="fas fa-times delete_icon"></i></button>
-            <input type="text" class="step_item-input" placeholder="trộn bột và nước đến khi đặc lại"
-                name="steps">
-        </div>
-        <div class="step_upload_image">
-            <input class="stepimgs" type="file" id="stepimg${index}" accept="image/*" name="stepimgs">
-            <label for="stepimg${index}" class="label_upload_image">
-                <div class="step_label_item">
-                    <i class="fas fa-camera step_cam_icon"></i>
-                </div>
-            </label>
-            <input type="text" class="steptext" name="steps" style="display: none;">
-            
-        </div>
-    </li>
-    `;
-    $("ul.step_list").append(stepAppended);
-    document.querySelector(`#stepimg${index}`).addEventListener('change', handleFileSelect, false);
-    index++;
+  //append
+  $(".add_step").click(function (event) {
+    event.preventDefault();
+    var step = document.getElementsByClassName('step_item');
+    var step_html = '<li class="step_item"><div class="step_item-in">    <input type="text" id = "step_input' + step.length.toString() + '" class="step_item-input" placeholder="trộn bột và nước đến khi đặc lại" name="steps">  <button class="step_delete_icon"><i class="fas fa-times delete_icon"></i></button>    </div> <div class="step_upload_image"> <input type="file" id ="step_image' + step.length.toString() + '" accept="image/*" name="image" onchange="preImg(this)">        <label for="step_image' + step.length.toString() + '" class="label_upload_image">        <img src="" alt="" class="step_image nodisplay">        <div>                 <i class="fas fa-camera step_cam_icon"></i>             </div>      </label>  <input type="text" class="steptext" name="steps" style="display: none;"></div></li>'
+    $("ul.step_list").append(step_html);
   });
-  $(this).on("click", ".step_delete_icon", function (e) {
-    e.preventDefault();
-    if (document.getElementsByClassName('step_list')[1]) {
-      var target2 = $(this).parent().parent();
-      target2.remove();
-    }
+  //xóa
+  $(this).on("click", ".step_delete_icon", function (event) {
+    event.preventDefault();
+    var target2 = $(this).parent().parent();
+    target2.remove();
   });
+
 });
-$('btn-submit').click(function () {
-  const formElement = document.forms[0];
-  formElement.onsubmit = function (e) {
-    formElement.submit();
+
+
+//preview main cook image
+var loader = function (evt) {
+  let file = evt.target.files;
+  let output = document.getElementById("selector");
+  if (file[0].type.match("image")) {
+    let reader = new FileReader();
+    reader.addEventListener("load", function (e) {
+      let data = e.target.result;
+      let image = document.createElement("img");
+      image.src = data;
+      evt.target.parentNode.querySelector('.thumbnail').value = data;
+      output.innerHTML = "";
+      output.insertBefore(image, null);
+      output.classList.add("image")
+    });
+    reader.readAsDataURL(file[0]);
   }
-})
-
-
-document.querySelector('#stepimg').addEventListener('change', handleFileSelect, false);
-function handleFileSelect(evt) {
-  var f = evt.target.files[0]; 
-  console.log(evt.target) 
-  var reader = new FileReader();
-
-  reader.onload = (function() {
-    return function(e) {
-      evt.target.parentNode.querySelector('.steptext').value = e.target.result;
-    };
-  })(f);
-
-  reader.readAsDataURL(f);
 }
+let fileInput = document.getElementById("file_1");
+fileInput.addEventListener("change", loader);
 
 
+//preview step images
 
+function preImg(e) {
+  var img = e.nextSibling.nextSibling.childNodes[1];
+  var icon = img.nextSibling.nextSibling;
+  let file = e.files[0];
+  let reader = new FileReader();
 
-document.querySelector('#thumbnailimg').addEventListener('change', function(evt){
-  var f = evt.target.files[0];
-  
-  var reader = new FileReader();
-
-  reader.onload = (function() {
-    return function(e) {
-      evt.target.parentNode.querySelector('.thumbnail').value = e.target.result;
-    };
-  })(f);
-
-  reader.readAsDataURL(f);
-}, false);
-
-
-
-
-
-
-
-
-
-
+  reader.onload = function () {
+    // Hiển thị ảnh gốc
+    var url = reader.result;
+    img.src = url;
+    img.classList.remove("nodisplay");
+    icon.innerHTML = "";
+    e.parentNode.querySelector('.steptext').value = url;
+  }
+  reader.readAsDataURL(file);
+}

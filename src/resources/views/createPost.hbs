@@ -5,104 +5,119 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
     <link rel="stylesheet" href="/css/createPost.css">
     <link rel="stylesheet" href="/css/base.css">
-    {{!-- <link rel="stylesheet" href="/css/all.css"> --}}
+    <link rel="stylesheet" href="/css/raw.css">
+    <link rel="stylesheet" href="/font/css/all.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
 
 </head>
 
 <body>
-    <header class="header">
-    </header>
-    <form class="container" action="" method="POST">
-        <div class="upload_image">
-            <input type="file" id="thumbnailimg" accept="image/*" name="thumbnailimg">
-            <label for="thumbnailimg">
-                <div class="label_item">
-                    <i class="fas fa-camera cam_icon"></i>
-                    <h3 class="upload_file-label">Hôm nay bạn đã đăng bài gì chưa?</h3>
-                    <p class="upload_file-span">
-                        Truyền cảm hứng nấu món của bạn đến mọi người nào!!!
-                    </p>
-                </div>
-            </labell>
-            <input type="text" class="thumbnail" name="thumbnail" style="display: none;">
-        </div>
-        <div class="cook_recipe">
-            <div class="cook_recipe-input">
-                <div class="cook_recipe-name">
-                    <input type="text" class="cook_recipe-name--input" placeholder="Tên món" name="title">
-                </div>
-                <div class="cook_recipe-name">
-                    <input type="text" class="cook_recipe-name--input" placeholder="Mô tả món ăn của bạn"
-                        name="postdescription">
-                </div>
-                <div class="cook_recipe-khauphan">
-                    <label class="cook_recipe-khauphan--label">Khẩu phần: </label>
-                    <input type="text" class="cook_recipe-khauphan--input" name="ration">
-                </div>
-                <div class="cook_recipe-khauphan">
-                    <label class="cook_recipe-khauphan--label">Thời gian nấu: </label>
-                    <input type="text" class="cook_recipe-khauphan--input" name="timecook">
+    {{>header}}
+    <div class="container">
+        <form action="" class="form_submit" method="POST">
+            <div class="upload_image">
+                <input type="file" id="file_1" accept="image/*">
+                <label for="file_1" id="selector">
+                    <div class="label_item">
+                        <i class="fas fa-camera cam_icon"></i>
+                        <h3 class="upload_file-label">Hôm nay bạn đã đăng bài viết nào chưa?</h3>
+                        <p class="upload_file-span">
+                           Hãy truyền cảm hứng nấu món của bạn đến mọi người nào!!!
+                        </p>
+                    </div>
+                </label>
+                <input type="text" class="thumbnail" name="thumbnail" style="display: none;">
+            </div>
+
+            <div class="cook_recipe">
+                <div class="cook_recipe-input">
+                    <div class="cook_recipe-name">
+                        <input type="text" class="cook_recipe-name--input" placeholder="Tên món" name="title">
+                    </div>
+                    <div class="cook_recipe-name">
+                        <input type="text" class="cook_recipe-name--input" placeholder="Mô tả món ăn của bạn"
+                            name="postdescription">
+                    </div>
+
+                    <div class="cook_recipe-khauphan">
+                        <label for="name_khau" class="cook_recipe-khauphan--label">Khẩu phần: </label>
+                        <input type="text" class="cook_recipe-khauphan--input" name="ration" placeholder="Số người ăn">
+                    </div>
+                    <div class="cook_recipe-khauphan">
+                        <label for="name_time" class="cook_recipe-khauphan--label">Thời gian nấu: </label>
+                        <input type="text" class="cook_recipe-khauphan--input" name="timecook" placeholder="Số phút">
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="material">
-            <h2>Nguyên Liệu</h2>
-            <ul class="material_list">
-                <div>
-                    <li class="material_item">
-                        <input type="text" class="material_input" placeholder="250g bột" name="ingredients">
-                        <button class="material_delete_icon"><i class="fas fa-times delete_icon"></i></button>
+            <div class="material">
+                <h2>Nguyên Liệu</h2>
+                <ul list-style="" class="material_list">
+
+                        <li class="material_item"><input type="text" class="material_input" placeholder="250g bột"
+                                name="ingredients">
+                            <button class="material_delete_icon"><i class="fas fa-times delete_icon"></i></button>
+                        </li>
+
+                </ul>
+                <div class="add_material">
+                    <button class="add_material_button">
+                        <i class="fas fa-plus add_icon"></i>
+                        <span class="add_button-descrip">Nguyên liệu</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="step">
+                <h2>Các Bước </h2>
+                <ul class="step_list">
+                    <!-- <div> -->
+                    <li class="step_item">
+                        <div class="step_item-in">
+                            <input type="text" id="step_input0" class="step_item-input"
+                                placeholder="trộn bột và nước đến khi đặc lại" name="steps">
+                            <button class="step_delete_icon"><i class="fas fa-times delete_icon"></i></button>
+                        </div>
+
+                        <div class="step_upload_image">
+                            <input type="file" id="step_image0" accept="image/*" onchange="preImg(this)">
+                            <label for="step_image0" class="label_upload_image">
+                                <img src="" alt="" class="step_image nodisplay">
+                                <div>
+                                    <i class="fas fa-camera step_cam_icon"></i>
+                                </div>
+                            </label>
+                            <input type="text" class="steptext" name="steps" style="display: none;">
+                        </div>
                     </li>
+                    <!-- </div> -->
+                </ul>
+                <div class="add_step">
+                    <button class="add_step_button">
+                        <i class="fas fa-plus add_icon"></i>
+                        <span class="add_button-descrip">Bước làm</span>
+                    </button>
+
                 </div>
-            </ul>
-            <div class="add_material">
-                <button class="add_material_button">
-                    <i class="fas fa-plus add_icon"></i>
-                    <span class="add_button-descrip">Nguyên liệu</span>
-                </button>
             </div>
-        </div>
-        <div class="step">
-            <h2>Các Bước </h2>
-            <ul class="step_list">
-                <li class="step_item">
-                    <div class="step_item-in">
-                        <button class="step_delete_icon"><i class="fas fa-times delete_icon"></i></button>
-                        <input type="text" class="step_item-input" placeholder="trộn bột và nước đến khi đặc lại"
-                            name="steps">
-                    </div>
-                    <div class="step_upload_image">
-                        <input class="stepimgs" type="file" id="stepimg" accept="image/*" name="stepimgs">
-                        <label for="stepimg" class="label_upload_image">
-                            <div class="step_label_item">
-                                <i class="fas fa-camera step_cam_icon"></i>
-                            </div>
-                        </label>
-                        <input type="text" class="steptext" name="steps" style="display: none;">
-                        
-                    </div>
-                </li>
+            <hr>
+
+            <button type="submit" class="submit_button">Đăng bài</button>
+        </form>
+    </div>
 
 
-            </ul>
-            <div class="add_step">
-                <button class="add_step_button">
-                    <i class="fas fa-plus add_icon"></i>
-                    <span class="add_button-descrip">Bước làm</span>
-                </button>
-
-            </div>
-        </div>
-        <button id="btn-submit" type="submit">Đăng bài</button>
-    </form>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    </script>
     <script src="/javascripts/createPost.js"> </script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    </script>
+
+
 </body>
 
 </html>

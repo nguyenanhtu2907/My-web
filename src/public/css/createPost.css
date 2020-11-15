@@ -1,20 +1,22 @@
 body{
-    background-color:rgb(252,252,240);
+    background-color:rgb(255, 255, 255);
 }
 .container{
-    /* position: relative; */
+    position: relative;
 
     background-color: white;
-    border: 0px solid;
+    border-radius: 10px;
     margin-right: auto;
     margin-left: auto;
     width:600px;
     height: 100%;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 0%), 0 6px 20px 0 rgb(0 0 0 / 18%);
+
 }
 
 .upload_image{
    width: 100%;
-   height: 200px;
+   height: auto;
    background-color: rgb(246,245,244);
 }
 
@@ -23,23 +25,37 @@ input[type="file"]{
 }
 
 label{
-    /* height: 200px; */
     display: block;
     margin-inline-end: 0px;
     font-weight: bold;
     text-align: center;
     justify-content: center;
     align-items: center;
-    margin: auto;
-    /* margin: auto; */
+    
     
 }
+
+
 label:hover{
     cursor: pointer;
 }
 
+#selector img{
+    width: 570px;
+    object-fit: cover;
+    
+}
+/* #selector.image{
+    width: 570px;
+}
+
+#selector.image img{
+    width: 570px;
+    position: relative;
+    object-fit: cover;
+} */
 .label_item{
-    padding-top:25px;
+    padding:25px 0 25px 0;
 }
 .cam_icon{
     font-size: 5rem;
@@ -53,25 +69,30 @@ label:hover{
     font-size: 1.5rem;
 }
 
+.cook_recipe{
+    position: relative;
+}
 .cook_recipe-input{
     display:block;
-    padding: 10px;
+    margin: 10px 5px 5px 5px;
 }
 .cook_recipe-name{
     background-color:rgb(246,245,244) ;
     display: flex;
     flex: 1;
+    margin-bottom: 5px;
+    padding: 5px;
     border-radius: 20px;
     /* line-height: 1.5rem; */
-    margin: 10px;
+    
 }
 
 .cook_recipe-name--input{
     flex: 1;
-    height: 56px;   
+    height: 50px;   
     border: none;
-    font-size: 2.5rem;
-    border-radius: 8px;
+    font-size: 2rem;
+    border-radius: 6px;
     background-color:rgb(246,245,244) ;
     /* color: rgb(206,206,205); */
 }
@@ -79,26 +100,31 @@ label:hover{
 .cook_recipe-khauphan{
     display:flex;
     justify-content: space-between;
-    padding: 15px 10px;
+    padding: 10px 10px 10px 0;
 }
 .cook_recipe-khauphan--label{
     font-size: 2rem;
     font-family: roboto thin;
-    margin-left:0px;
-    min-width: 150px;
+    min-width: 50px;
     justify-content: center;
     text-align: center;
     margin: auto;
-    margin-left: -25px;
+    
+    margin-left: 0px;
 }
 .cook_recipe-khauphan--input{
-    flex: 1;
+    flex: 2;
+    max-width: 350px;
     height: 50px;
     border: none;
     border-radius: 8px;
     background-color:rgb(246,245,244) ;
     font-size:2rem;
 
+}
+.material>h2{
+    font-size: 2rem;
+    padding-left: 5px;
 }
 .material_list{
 }
@@ -110,7 +136,8 @@ label:hover{
 .material_input{
     /* margin-right: 50px; */
     flex: 1;
-    height: 50px;
+    font-size: 1.5rem;
+    height: 45px;
     border: none;
     border-radius: 8px;
     background-color:rgb(246,245,244) ;
@@ -164,6 +191,12 @@ label:hover{
     margin-bottom:5px;
     font-size: 1.8rem;
 }
+.step{
+    padding-bottom: 20px;
+}
+.step>h2{
+    padding-left: 5px;
+}
 .step_list{
     
 }
@@ -176,7 +209,8 @@ label:hover{
 }
 .step_item-input{
     flex: 1;
-    height: 50px;
+    font-size: 1.5rem;
+    height: 45px;
     border: none;
     border-radius: 8px;
     background-color:rgb(246,245,244) ;
@@ -193,7 +227,6 @@ label:hover{
     display: flex;
     height: 20px;
     justify-content: center;
-   
 }
 
 .add_step_button{
@@ -209,27 +242,73 @@ label:hover{
 
 }
 
-.step_upload_image{
+/* .step_upload_image{
     width: 100px;
     height: 100px;
     background-color: rgb(246,245,244);
 
-}
+} */
 .label_upload_image{
-    height: 100px;
+    width: 160px;
+    height: 128px;
     display: flex;
-    margin-inline-end: 0px;
     font-weight: bold;
     text-align: center;
     justify-content: center;
     align-items: center;
+    background-color: rgb(246,245,244);
 }
 
 .step_label_item{
+    width: 160px;
+    height: 128px;
     margin: auto;
+    object-fit: contain;
 }
 
 .step_cam_icon{
     font-size: 2rem;
 }
 
+.form_submit{
+    padding-left: 5px;
+    margin: 20px 0;
+    padding-bottom: 20px;
+    padding-top: 10px;
+}
+.submit_button{
+    width: 160px;
+    height: auto;
+    border: none;
+    outline: none;
+    background-color: rgb(20, 167, 32);
+    font-size: 2rem;
+    color: white;
+    border-radius: 20px;
+    padding-left: 9px;
+    position: relative;
+    left: 21rem;
+    padding-bottom: 3px;
+    margin-top: 10px;
+}
+.submit_button:hover{
+    background-color: rgb(19, 158, 30);
+    transition: 0.2s;
+}
+
+
+.nodisplay{
+display: none;
+}
+
+
+
+.step_image{
+    width: 160px;
+    height: 128px;
+    object-fit: cover;
+    
+}
+ul{
+    list-style-type: none;
+}
