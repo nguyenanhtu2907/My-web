@@ -1,10 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
 
-{{#if localIsAuthenticated}}
-<h1> {{localAuthUser.fullname}}</h1>
-<a href="/account/{{localAuthUser._id}}">Trang cá nhân</a> <br>
-<a href="/account/{{localAuthUser._id}}/edit?type=information">Chỉnh sửa thông tin cá nhân</a><br>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/font/css/all.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.1/imagesloaded.pkgd.min.js"></script>
+    <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="/css/raw.css">
+</head>
+
+<body>
+    {{>header}}
+    <div class="containers">
+        <div class="search--logo">
+            <img src="/img/logodf.png" class="logo">
+        </div>
+        <form class="input_search" method="get" action="/post/search">
+            <input type="text"name="q" class="search--input" placeholder="Tên món ăn, nguyên liệu, chủ đề...">
+            <button type="submit"  class="search--btn" style="font-weight: 500;">
+                Tìm kiếm
+            </button>
+        </form>
+        <ul class="nav nav-pills" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="pill" href="#idea_cook">Cảm hứng</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled" data-toggle="pill" href="#friend_cook">Bạn bếp</a>
+            </li>
+        </ul>
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div id="idea_cook" class="containerss tab-pane active"><br>
+                <div class="grid">
+                    {{#each posts}}
+                    <div class="item">
+                        <div class="content">
+                            <div class="box_desc">
+                                <a href="/post/{{this.slug}}"><img class="photothumb" src="{{this.thumbnail}}"></a>
+                                <div class="link_user">
+                                    <a href="/account/{{this.author}}" class="user">
+                                        <img src="{{this.authorAvatar}}" alt="" class="user_image">
+                                        <span class="user_name">{{this.authorName}}</span>
+                                    </a>
+                                </div>
+                                <div class="desc">
+                                    <a href="/post/{{this.slug}}" class="title">{{this.title}}</a>
+                                    {{#if this.timecook}}
+                                    <br><span class="time"><i class="fas fa-stopwatch time_icon"></i>
+                                        {{this.timecook}} phút
+                                    </span>
+                                    {{/if}}
+                                    {{#if this.postdescription}}
+                                    <p>{{this.postdescription}}</p>
+                                    {{else}}
+                                    <p>#cook4u</p>
+                                    {{/if}}
+                                    <span>
+                                        {{this.date}}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{/each}}
+
+                </div>
+            </div>
+            <div id="friend_cook" class="containers tab-pane fade"><br>
+                <div class="grid">
+                </div>
+            </div>
+        </div>
+    </div>
+        <div class="load-more">
+            <button onclick="loadMore(event,1)">Xem thêm</button>
+        </div>
+
+    <script src="/javascripts/home.js"></script>
+    <script>
+        console.log(document.querySelector('#idea_cook .grid').lastElementChild.offsetTop)
+        var last = document.querySelector('#idea_cook .grid').lastElementChild.offsetTop
+        function loadMore(e, index) {
+            e.preventDefault()
 
 
-{{else}}
-<h1>chua dang nhap</h1>
-{{/if}}
+            e.target.setAttribute('onclick', `loadMore(event, ${index + 1})`)
+            fetch(`/suggested-feed/${index}`)
+                .then(res => res.json())
+                .then(items => {
+                    let html = '';
+                    items.forEach(item => {
+                        html += `
+                        <div class="item">
+                            <div class="content">
+                                <div class="box_desc">
+                                    <img class="photothumb" src="${item.thumbnail}">
+                                    <div class="link_user">
+                                        <a href="/account/${item.author}" class="user">
+                                            <img src="${item.authorAvatar}" alt="" class="user_image">
+                                            <span class="user_name">${item.authorName}</span>
+                                        </a>
+                                    </div>
+                                    <div class="desc">
+                                        <a href="/post/${item.slug}" class="title">${item.title}</a>
+                                    `
+                        if (item.timecook) {
+                            html += `
+                            <br>
+                                     <span class="time"><i class="fas fa-stopwatch time_icon"></i>
+                                            ${item.timecook} phút
+                                        </span>
+                                        `
+                        }
+                        if (item.postdescription) {
+                            html += `<p>${item.postdescription}</p>`
+                        } else {
+                            html += `<p>#cook4u</p>`
+                        }
+
+                        html += `
+                                        
+                                        <span>
+                                            ${item.date}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        `
+                    })
+                    document.querySelector('#idea_cook .grid').innerHTML += html;
+                    resizeAllGridItems();
+                    allItems = document.getElementsByClassName("item");
+                    for (x = 0; x < allItems.length; x++) {
+                        imagesLoaded(allItems[x], resizeInstance);
+                    }
+                    //console.log(document.querySelector('#idea_cook .grid').lastElementChild)
+                    window.scrollTo(0 ,last)
+                    last = document.querySelector('#idea_cook .grid').lastElementChild.offsetTop
+                })
+        }
+    </script>
+
+</body>
+
+</html>

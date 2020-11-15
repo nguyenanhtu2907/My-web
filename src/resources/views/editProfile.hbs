@@ -169,7 +169,6 @@
                 Validator.isRequired('input[name="gender"]', 'Trường này là bắt buộc!!!'),
             ],
             onSubmit: function (data) {
-                
                 fetch('/account/{{user._id}}/edit-information', {
                     method: 'PUT',
                     headers: {

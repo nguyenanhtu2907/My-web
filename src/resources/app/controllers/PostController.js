@@ -100,11 +100,17 @@ class PostController {
             let result =  queryArr.join('.*');
             // console.log('.*'+result+'.*');
             Post.find({slug: {$regex: '.*'+result+'.*'}})
-            .then(posts=> res.json(posts))
+            .then(posts => multipleMongooseToObj(posts))
+                    .then(posts => getPostsInfo(posts))
+                    .then(posts=>res.render('search',{
+                        layout: false,
+                        posts,
+                        count: posts.length,
+                        query: req.query.q,
+                    }))
             .catch(()=>{})
         }
     }
-
 }
 function removeVietnameseTones(str) {
     str = str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g,"a"); 

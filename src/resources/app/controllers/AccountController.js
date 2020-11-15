@@ -32,7 +32,7 @@ class AccountController {
             } else {
                 const user = new User(entity);
                 user.save()
-                    .then(() => res.redirect('/'))
+                    .then(() => res.redirect('/account/login'))
                     .catch(error => { })
             }
         })
@@ -271,7 +271,7 @@ async function getPostsInfo(posts) {
         let year = date_ob.getFullYear();
         post.date = date + '/' + month + '/' + year;
     }
-    return posts
+    return posts;
 }
 
 module.exports = new AccountController;

@@ -18,9 +18,10 @@
     <div class="account-options" style="display: flex; margin-top:-13px; font-size: 20px">
         <a href="/post/create">Đăng bài</a>
         {{#if localIsAuthenticated}}
-        <img src="{{localAuthUser.avatar}}" alt="" style="height: 50px; padding-right:10px;">
+        <a href="/account/{{localAuthUser._id}}"><img src="{{localAuthUser.avatar}}" alt="" style="height: 50px; padding-right:10px;"></a>
+        
         <div>
-            <h4>Xin chào,{{localAuthUser.fullname}}</h4>
+            <h4>Xin chào,<a href="/account/{{localAuthUser._id}}">{{localAuthUser.fullname}}</a></h4>
             <a href="/account/{{localAuthUser._id}}/edit?type=password">Đổi mật khẩu</a>
             /
             <a href="/account/logout">Đăng xuất</a>

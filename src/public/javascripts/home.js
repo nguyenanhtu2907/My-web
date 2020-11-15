@@ -17,18 +17,11 @@ window.onload = resizeAllGridItems();
 function resizeInstance(instance) {
   item = instance.elements[0];
   resizeGridItem(item);
-
 }
 
 allItems = document.getElementsByClassName("item");
 for (x = 0; x < allItems.length; x++) {
   imagesLoaded(allItems[x], resizeInstance);
-}
-
-function resizeDes(){
-  alert('1')
-  document.querySelectorAll('.desc p').forEach(des =>{
-  })
 }
 
   // var selected = document.getElementsByClassName("nav-link");
