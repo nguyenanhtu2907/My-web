@@ -1,0 +1,165 @@
+body{
+    background-color:rgb(255, 255, 255);
+}
+.background{
+    width: 100%;
+    height: 120px;
+    background-color:rgb(255, 255, 255);
+    
+
+}
+
+.containers{
+    margin-left: auto;
+    margin-right:auto;
+    max-width: 700px;
+  
+}
+.main_title{
+    display: flex;
+    align-items: center;
+    padding-top: 50px ;
+    
+}
+.main_title h4{
+    padding-top: 5px;
+    margin: auto;
+    border-radius: 20px;
+    font-size: 3rem;
+    text-align: center;
+    color: rgb(85, 85, 85);
+}
+.nav{
+    position: relative;
+}
+.borders::after{
+    content: "";
+    display: block;
+    position: absolute;
+    width: 99%;
+    height: 0.9px;
+    background-color: rgb(147,146,144);
+    bottom: -70px;
+    opacity: 60%; 
+}
+
+
+.nav-item{
+        font-size: 2rem;
+        margin-top: 20px;
+        /* display: none; */
+}
+
+.recipes_list{
+    position: relative;
+    margin-top: 80px;
+    padding-left: 0;
+    list-style: none;
+    
+}
+.recipes_item{
+    padding: 8px;
+}
+.recipes_item::after{
+    content: "";
+    display: block;
+    position: absolute ;
+    width: 98%;
+    height: 0.9px;
+    background-color: rgb(147,146,144);
+    margin-top: 8px;
+    opacity: 60%;
+}
+.cook_link{
+    display: flex;
+    
+    justify-content: center;
+    justify-content: space-between;
+    text-decoration: none;
+}
+.cook_link:hover{
+    text-decoration: none;
+}
+
+.recipes_item-main--nick{
+    text-decoration: none;
+    
+}
+.recipes_item-main--nick:hover{
+    text-decoration: none;
+}
+
+.recipes_item-nick--image{
+    width: 40px;
+    border-radius: 50%;
+}
+.nick_name{
+    font-size: 1.8rem;
+    color: rgb(147,146,144);
+    
+}
+.title{
+    cursor: pointer;
+}
+
+.title:hover{
+    text-decoration: none;
+}
+.title_text{
+    font-size: 3rem;
+    margin-bottom: 0;
+    color: rgb(74,74,74);
+}
+.time{
+    font-size: 1.5rem;
+    color: rgb(147,146,144);;
+    padding-right: 7px;
+}
+
+.time_icon{
+    font-size: 1.5rem;
+    color:rgb(147,146,144);
+    padding: 2px;
+    
+}
+.ration
+{
+    font-size: 1.5rem;
+    color: rgb(147,146,144);
+    padding-left: 7px;
+    
+}
+
+.ration_icon{
+    font-size: 1.5rem;
+    color:rgb(147,146,144);
+    padding: 2px;
+    
+}
+.description_info{
+    font-size: 1.8rem;
+    color: rgb(104, 103, 100);
+}
+.recipes_item-main--image{
+    object-fit: cover;
+    width: 140px;
+    height: 190px;
+    
+}
+
+.next_page{
+    margin: 80px;
+    font-size: 2rem;
+    display: flex;
+}
+
+.pagination{
+    margin: auto;
+}
+.page-item.active .page-link{
+    background-color: rgb(255,153,51);
+    border-color: rgb(255,153,51);
+}
+.page-link{
+    color: rgb(255,153,51);
+}

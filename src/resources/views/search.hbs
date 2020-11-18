@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/search_result.css">
+    <link rel="stylesheet" href="/font/css/all.css">
+    <link rel="stylesheet" href="/css/raw.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+
+</head>
+
+<body>
+    {{>header}}
+
+    <div class="containers space">
+        <div class="main_title">
+            <h4>Kết quả tìm kiếm cho: "{{query}}"</h4>
+        </div>
+        <div class="recipes">
+            <ul class="recipes_list">
+                <h3>
+                    Tổng số: {{count}} món
+                </h3>
+                <hr>
+                {{#each posts}}
+                <li class="recipes_item">
+                    <div class="cook_link">
+                        <div class="recipes_item-main">
+                            <a href="/account/{{this.author}}" class="recipes_item-main--nick">
+                                <img class="recipes_item-nick--image" src="{{this.authorAvatar}}" alt="">
+                                <span class="nick_name">{{this.authorName}}</span>
+                            </a>
+                            <a href="/post/{{this.slug}}" class="title">
+                                <h3 class="title_text">{{this.title}}</h3>
+                            </a>
+                            <div class="time_and_ration">
+                                {{#if this.timecook}}
+                                <span class="time"><i class="fas fa-stopwatch time_icon"></i>
+                                    {{this.timecook}}
+                                </span>
+                                {{/if}}
+                                {{#if this.ration}}
+                                <span class="ration"><i class="fas fa-user ration_icon"></i>
+                                    {{this.ration}}</span>
+                                {{/if}}
+                            </div>
+                            <div class="description">
+                                <p class="description_info"> {{#each this.ingredients}}{{this}}, {{/each}}
+                                </p>
+                            </div>
+
+                        </div>
+                        <div class="cook_image">
+                            <a href="/post/{{this.slug}}"><img class="recipes_item-main--image" src="{{this.thumbnail}}"
+                                    alt=""></a>
+                        </div>
+
+                    </div>
+                </li>
+                {{/each}}
+            </ul>
+
+            {{!-- <nav aria-label="Page navigation example" class="next_page">
+                <ul class="pagination">
+                  <li class="page-item pre">
+                    <a class="page-link" href="#" aria-label="Previous">
+                      <span aria-hidden="true">&laquo;</span>
+                    </a>
+                  </li>
+                  <li class="page-item active"><a class="page-link " href="?page=1">1</a></li>
+                  <li class="page-item"><a class="page-link" href="?page=2">2</a></li>
+                  <li class="page-item"><a class="page-link" href="?page=3">3</a></li>
+                  <li class="page-item next">
+                    <a class="page-link " href="#" aria-label="Next">
+                      <span aria-hidden="true">&raquo;</span>
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+            </div> --}}
+        </div>
+        <script src="/javascipts/search_result.js"></script>
+</body>
+
+</html>

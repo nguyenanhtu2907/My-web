@@ -52,6 +52,4 @@ app.set('views', path.join(__dirname, 'resources/views'))
 route(app);
 
 
-http.listen(port, () => {
-    console.log(`http://localhost:${port}`);
-})
+http.listen(process.env.PORT || port);

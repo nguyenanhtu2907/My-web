@@ -1,15 +1,18 @@
 
 Hope you enjoy your new logo, here are the people that
 made your beautiful logo happen :)
-font name: amita-bold
-font link: https://fonts.google.com/specimen/Amita
-font author: Eduardo Tunni
-font author site: http://www.tipo.net.ar/
+font name: Fanwood Text
+font link: https://fonts.google.com/specimen/Fanwood+Text
+font author: Barry Schwartz
+font author site: http://crudfactory.com/
 
 
+icon designer: lastspark
+icon designer link: /lastspark
+        
 
-fontColor: {"gradient-0":"#E5FF00","gradient-1":"#FC5454"}
+fontColor: {"hex":"#FF8117"}
 bgColor: {"hex":"#FFFFFF"}
-
+iconColor: {"hex":"#FF8117"}
 
       

@@ -6,10 +6,12 @@ class HomeController {
     //[GET] /
     index(req, res, next) {
         Post.find({}).limit(20).sort({ 'createdAt': -1 })
-            .then(posts => res.render('home'))
-        // .then(posts => multipleMongooseToObj(posts))
-        // .then(posts => getPostsInfo(posts))
-        // .then(posts => res.json(posts))
+        .then(posts => multipleMongooseToObj(posts))
+        .then(posts => getPostsInfo(posts))
+        .then(posts => res.render('home', {
+            layout: false,
+            posts,
+        }))
     }
 
     moreSuggestedFeed(req, res, next) {
@@ -34,6 +36,9 @@ async function getPostsInfo(posts) {
         var user = await User.findOne({ _id: post.author });
         post.authorName = user.fullname;
         post.authorAvatar = user.avatar;
+        if(post.postdescription.length>100){
+            post.postdescription=post.postdescription.slice(0,100)+' ....';
+        }
         let date_ob = post.updatedAt;
         let date = ("0" + date_ob.getDate()).slice(-2);
         let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
