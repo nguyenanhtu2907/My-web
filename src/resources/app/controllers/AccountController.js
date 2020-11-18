@@ -2,9 +2,6 @@ const bcrypt = require('bcryptjs');
 const User = require('../models/User');
 const Post = require('../models/Post');
 const { mongooseToObj, multipleMongooseToObj } = require('../util/mongooseToObj')
-
-
-// const { delete } = require('../routes/account');
 class AccountController {
     register(req, res, next) {
         res.render('register', {
@@ -28,7 +25,6 @@ class AccountController {
                     message: 'Tên đăng nhập đã tồn tại!!!',
                     values: req.body,
                 })
-
             } else {
                 const user = new User(entity);
                 user.save()
@@ -61,47 +57,15 @@ class AccountController {
                     values: req.body,
                 })
             }
-
             delete user.password_hash;
             req.session.isAuthenticated = true;
             req.session.authUser = user;
-
             //url lay duoc tu restrict
             const url = req.query.retUrl || '/';
 
             res.redirect(url)
         })
     }
-    // profile(req, res, next) {
-    //     User.findOne({ _id: req.params.id })
-    //         .then(user => {        
-    //             let number = 0;
-    //             Post.count({ author: userTarget._id }, function (err, num) {
-    //                 if (num) {
-    //                     number = num
-    //                 }
-    //             })
-    //             Post.find({ author: req.params.id }).limit(10).skip(req.query.page * 10 || 0).sort({ 'createdAt': -1 })
-    //                 .then(posts => multipleMongooseToObj(posts))
-    //                 .then(posts => getPostsInfo(posts))
-    //                 .then(posts => {
-    //                     return res.render('profile', {
-    //                         layout: false,
-    //                         userTarget: mongooseToObj(user),
-    //                         posts,
-    //                         countPost: number,
-    //                         page: (number > 10 ? Math.ceil(number / 10) : 1),
-    //                         showPage: number > 10 ? 1 : 0,
-    //                         login: req.session.authUser,
-    //                         query: (req.query.tab === 'saved' ? 1 : 0)
-    //                     })
-    //                 })
-    //                 .catch(() => { })
-    //         })
-    //         .catch(() => res.render('error404',{
-    //             layout:false
-    //         }))
-    // }
     profile(req, res, next) {
         var error = '';
         var userTarget;

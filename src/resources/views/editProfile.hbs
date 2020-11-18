@@ -12,11 +12,13 @@
         integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="/css/raw.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
     {{>header}}
-    <div class="containers">
+    <div class="containers space">
         <div class="menu_bar">
             <div class="change_info {{#ifCond type 'information'}} active{{/ifCond}}">Thông tin cá nhân</div>
             <div class="change_pass {{#ifCond type 'password'}} active{{/ifCond}}">Đổi mật khẩu</div>

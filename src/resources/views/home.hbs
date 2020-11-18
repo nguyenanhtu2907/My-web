@@ -20,13 +20,13 @@
 
 <body>
     {{>header}}
-    <div class="containers">
-        <div class="search--logo">
-            <img src="/img/logodf.png" class="logo">
+    <div class="containers space">
+        <div class="search--logo" style="padding-top:10px">
+            <img src="/img/CookHub.jpg" class="main_logo">
         </div>
         <form class="input_search" method="get" action="/post/search">
-            <input type="text"name="q" class="search--input" placeholder="Tên món ăn, nguyên liệu, chủ đề...">
-            <button type="submit"  class="search--btn" style="font-weight: 500;">
+            <input type="text" name="q" class="search--input" placeholder="Tên món ăn, nguyên liệu, chủ đề...">
+            <button type="submit" class="search--btn" style="font-weight: 500;">
                 Tìm kiếm
             </button>
         </form>
@@ -82,9 +82,9 @@
             </div>
         </div>
     </div>
-        <div class="load-more">
-            <button onclick="loadMore(event,1)">Xem thêm</button>
-        </div>
+    <div class="load-more space">
+        <button onclick="loadMore(event,1)">Xem thêm</button>
+    </div>
 
     <script src="/javascripts/home.js"></script>
     <script>
@@ -146,7 +146,7 @@
                         imagesLoaded(allItems[x], resizeInstance);
                     }
                     //console.log(document.querySelector('#idea_cook .grid').lastElementChild)
-                    window.scrollTo(0 ,last)
+                    window.scrollTo(0, last)
                     last = document.querySelector('#idea_cook .grid').lastElementChild.offsetTop
                 })
         }

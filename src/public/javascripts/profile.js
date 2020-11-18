@@ -55,9 +55,6 @@ function routePage(e) {
     }
 
 
-
-
-
     if (ulClicked.querySelector('.last').id == 1 || ulClicked.querySelector('.last').id == 2 || page == ulClicked.querySelector('.last').id * 1 - 1) {
         ulClicked.querySelector('.last').classList.add('disabled')
     }
@@ -115,6 +112,6 @@ function routePage(e) {
             window.scrollTo(0,0)
         })
 
-
+    history.pushState({page: 1}, "title 1", `?page=${page}`)
 
 }

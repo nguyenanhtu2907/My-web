@@ -52,15 +52,20 @@ body{
     
     text-decoration: none;
 }
-.user_image{
+.link_user_image{
     width: 50px;
     height: 50px;
     border-radius: 50%;
+    overflow: hidden;
+}
+.user_image{
+    width: 50px;
 }
 
 .link_user-nick_name{
     color: rgb(104, 104, 104);
     font-size: 2rem;
+    margin-left: 10px;
     justify-content: center;
    
  }
@@ -195,10 +200,14 @@ body{
     color: rgb(74,74,74);
 
 }
+.flex-1{
+    margin-right: auto;
+}
 .delete_comment{
     color: rgb(74,74,74);
     font-size: 1.5rem;
     margin: auto;
+    display: block;
     cursor: pointer;
 }
 .user_img{

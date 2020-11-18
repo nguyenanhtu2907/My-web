@@ -1,9 +1,9 @@
 body{
     background-color:rgb(255, 255, 255);
+    position: relative;
+    top: -19px;
 }
 .container{
-    position: relative;
-
     background-color: white;
     border-radius: 10px;
     margin-right: auto;

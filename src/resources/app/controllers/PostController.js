@@ -70,19 +70,21 @@ class PostController {
     }
 
     addComment(req, res, next) {
-        var comment = {
-            authorName: req.session.authUser.fullname,
-            authorId: req.session.authUser._id,
-            authorAvatar: req.session.authUser.avatar,
-            content: req.body.content,
+        if(req.body.content.trim){
+            var comment = {
+                authorName: req.session.authUser.fullname,
+                authorId: req.session.authUser._id,
+                authorAvatar: req.session.authUser.avatar,
+                content: req.body.content,
+            }
+            Post.findOne({ slug: req.params.slug })
+                .then(post => {
+                    post.comments.push(comment);
+                    post.save()
+                        .then(() => res.json(post.comments))
+                        .catch(() => { })
+                })
         }
-        Post.findOne({ slug: req.params.slug })
-            .then(post => {
-                post.comments.push(comment);
-                post.save()
-                    .then(() => res.json(post.comments))
-                    .catch(() => { })
-            })
     }
     deleteComment(req, res, next) {
         Post.findOne({ slug: req.params.slug })
