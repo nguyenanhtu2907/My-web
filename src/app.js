@@ -11,7 +11,7 @@ const db = require('./resources/config/db');
 db.connect();
 const app = express();
 const port = 3000;
-const http = require("http").Server(app);
+const http = require("http").createServer(app);
 
 app.use(methodOverride('_method'));
 
